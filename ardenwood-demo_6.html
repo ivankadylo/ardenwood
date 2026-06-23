@@ -1,0 +1,2350 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Arden Wood — Handcrafted Oak Furniture</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Jost:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+:root {
+  --oak: #B8812A;
+  --oak-light: #D4A855;
+  --oak-dark: #7A5518;
+  --cream: #F7F3EC;
+  --charcoal: #1E1A14;
+  --warm-mid: #6B5D4A;
+  --border: rgba(184,129,42,0.18);
+  --serif: 'Cormorant Garamond', Georgia, serif;
+  --sans: 'Jost', sans-serif;
+}
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+  font-family: var(--sans);
+  background: var(--cream);
+  color: var(--charcoal);
+  font-weight: 300;
+  line-height: 1.7;
+  overflow-x: hidden;
+}
+
+/* GRAIN OVERLAY */
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.03'/%3E%3C/svg%3E");
+  pointer-events: none;
+  z-index: 9999;
+  opacity: 0.4;
+}
+
+/* LANGUAGE BAR */
+.lang-bar {
+  background: var(--charcoal);
+  padding: 8px 40px;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  flex-wrap: wrap;
+}
+.lang-btn {
+  background: none;
+  border: none;
+  color: rgba(255,255,255,0.45);
+  font-family: var(--sans);
+  font-size: 11px;
+  font-weight: 400;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  cursor: pointer;
+  padding: 4px 8px;
+  border-radius: 3px;
+  transition: all 0.2s;
+}
+.lang-btn:hover { color: rgba(255,255,255,0.85); }
+.lang-btn.active {
+  color: var(--oak-light);
+  background: rgba(184,129,42,0.15);
+}
+.lang-sep { color: rgba(255,255,255,0.15); font-size: 10px; }
+
+/* HEADER / NAV */
+nav {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 28px 40px;
+  border-bottom: 1px solid var(--border);
+  position: sticky;
+  top: 0;
+  background: rgba(247,243,236,0.95);
+  backdrop-filter: blur(12px);
+  z-index: 100;
+}
+.logo {
+  font-family: var(--serif);
+  font-size: 28px;
+  font-weight: 300;
+  letter-spacing: 4px;
+  color: var(--charcoal);
+  text-transform: uppercase;
+}
+.logo span { color: var(--oak); }
+.nav-links {
+  display: flex;
+  gap: 36px;
+  list-style: none;
+}
+.nav-links a {
+  text-decoration: none;
+  font-size: 11px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--warm-mid);
+  transition: color 0.2s;
+}
+.nav-links a:hover { color: var(--oak); }
+.nav-cta {
+  font-size: 11px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  padding: 11px 24px;
+  border: 1px solid var(--oak);
+  color: var(--oak);
+  background: none;
+  cursor: pointer;
+  font-family: var(--sans);
+  transition: all 0.25s;
+}
+.nav-cta:hover { background: var(--oak); color: white; }
+
+/* HERO */
+.hero {
+  min-height: 92vh;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  position: relative;
+  overflow: hidden;
+}
+.hero-content {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 80px 60px 80px 80px;
+  position: relative;
+  z-index: 2;
+}
+.hero-eyebrow {
+  font-size: 11px;
+  letter-spacing: 4px;
+  text-transform: uppercase;
+  color: var(--oak);
+  margin-bottom: 28px;
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+.hero-eyebrow::before {
+  content: '';
+  display: block;
+  width: 40px;
+  height: 1px;
+  background: var(--oak);
+}
+.hero-title {
+  font-family: var(--serif);
+  font-size: clamp(52px, 6vw, 86px);
+  font-weight: 300;
+  line-height: 1.05;
+  letter-spacing: -1px;
+  color: var(--charcoal);
+  margin-bottom: 32px;
+}
+.hero-title em {
+  font-style: italic;
+  color: var(--oak);
+}
+.hero-desc {
+  font-size: 15px;
+  color: var(--warm-mid);
+  max-width: 400px;
+  line-height: 1.8;
+  margin-bottom: 48px;
+}
+.hero-actions {
+  display: flex;
+  gap: 16px;
+  align-items: center;
+  flex-wrap: wrap;
+}
+.btn-primary {
+  background: var(--charcoal);
+  color: var(--cream);
+  border: none;
+  padding: 16px 36px;
+  font-family: var(--sans);
+  font-size: 11px;
+  letter-spacing: 2.5px;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: all 0.25s;
+}
+.btn-primary:hover { background: var(--oak-dark); }
+.btn-ghost {
+  background: none;
+  border: none;
+  color: var(--warm-mid);
+  font-family: var(--sans);
+  font-size: 11px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  transition: color 0.2s;
+}
+.btn-ghost:hover { color: var(--oak); }
+.btn-ghost::after { content: '→'; font-size: 16px; }
+
+.hero-visual {
+  position: relative;
+  overflow: hidden;
+}
+.hero-visual-bg {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(135deg, #C4883A18 0%, #7A551820 100%);
+}
+.hero-wood-texture {
+  position: absolute;
+  inset: 40px;
+  border: 1px solid var(--border);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.wood-rings {
+  width: 300px;
+  height: 300px;
+  position: relative;
+}
+.wood-rings svg { width: 100%; height: 100%; opacity: 0.35; }
+
+.hero-stats {
+  position: absolute;
+  bottom: 60px;
+  left: 60px;
+  display: flex;
+  gap: 48px;
+}
+.stat-item { }
+.stat-num {
+  font-family: var(--serif);
+  font-size: 42px;
+  font-weight: 300;
+  color: var(--oak);
+  line-height: 1;
+}
+.stat-label {
+  font-size: 10px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--warm-mid);
+  margin-top: 6px;
+}
+
+/* MARQUEE */
+.marquee-strip {
+  background: var(--charcoal);
+  padding: 16px 0;
+  overflow: hidden;
+  white-space: nowrap;
+}
+.marquee-inner {
+  display: inline-flex;
+  animation: marquee 28s linear infinite;
+  gap: 0;
+}
+.marquee-item {
+  display: inline-flex;
+  align-items: center;
+  gap: 32px;
+  padding: 0 32px;
+  font-size: 11px;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.45);
+}
+.marquee-dot {
+  width: 4px;
+  height: 4px;
+  border-radius: 50%;
+  background: var(--oak);
+  flex-shrink: 0;
+}
+@keyframes marquee {
+  from { transform: translateX(0); }
+  to { transform: translateX(-50%); }
+}
+
+/* PRODUCTS SECTION */
+.section { padding: 100px 80px; }
+.section-header {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  margin-bottom: 64px;
+}
+.section-eyebrow {
+  font-size: 10px;
+  letter-spacing: 4px;
+  text-transform: uppercase;
+  color: var(--oak);
+  margin-bottom: 16px;
+}
+.section-title {
+  font-family: var(--serif);
+  font-size: clamp(36px, 4vw, 56px);
+  font-weight: 300;
+  line-height: 1.1;
+  color: var(--charcoal);
+}
+.section-title em { font-style: italic; color: var(--oak); }
+
+.catalog-controls {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: flex-end;
+  gap: 24px;
+  margin-bottom: 28px;
+}
+.catalog-search {
+  width: 100%;
+  max-width: 320px;
+  padding: 13px 18px;
+  border: 1px solid var(--border);
+  background: white;
+  font-family: var(--sans);
+  font-size: 13px;
+  color: var(--charcoal);
+  outline: none;
+  transition: border-color 0.2s;
+}
+.catalog-search::placeholder { color: rgba(107,93,74,0.55); }
+.catalog-search:focus { border-color: var(--oak); }
+.category-tabs {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+.cat-tab {
+  font-family: var(--sans);
+  font-size: 10.5px;
+  letter-spacing: 1.3px;
+  text-transform: uppercase;
+  padding: 9px 16px;
+  border: 1px solid var(--border);
+  background: white;
+  color: var(--warm-mid);
+  cursor: pointer;
+  transition: all 0.2s;
+  white-space: nowrap;
+}
+.cat-tab:hover { border-color: var(--oak); color: var(--oak); }
+.cat-tab.active { background: var(--charcoal); border-color: var(--charcoal); color: var(--cream); }
+.catalog-count {
+  font-size: 11px;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  color: var(--warm-mid);
+  margin-bottom: 28px;
+}
+.catalog-empty {
+  padding: 60px 20px;
+  text-align: center;
+  color: var(--warm-mid);
+  font-size: 14px;
+  grid-column: 1 / -1;
+}
+.product-photo-fallback { width: 64px; height: 64px; opacity: 0.28; }
+.product-card.no-photo .product-img-area { background: #E8DFD0; }
+.products-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 2px;
+}
+.catalog-grid { grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); }
+.catalog-grid .product-card:first-child { grid-row: auto; }
+.catalog-grid .product-card:first-child .product-img-area { aspect-ratio: 3/4; height: auto; min-height: 0; }
+.product-card {
+  background: white;
+  position: relative;
+  overflow: hidden;
+  cursor: pointer;
+  display: block;
+}
+.product-card:first-child {
+  grid-row: span 2;
+}
+.product-img-area {
+  background: #E8DFD0;
+  aspect-ratio: 3/4;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  position: relative;
+  transition: transform 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+.product-card:first-child .product-img-area {
+  aspect-ratio: auto;
+  height: 100%;
+  min-height: 500px;
+}
+.product-card:hover .product-img-area { transform: scale(1.03); }
+.product-wood-icon {
+  width: 80px;
+  height: 80px;
+  opacity: 0.3;
+}
+.product-photo {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+.product-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to top, rgba(30,26,20,0.7) 0%, transparent 50%);
+  opacity: 0;
+  transition: opacity 0.4s;
+  display: flex;
+  align-items: flex-end;
+  padding: 28px;
+}
+.product-card:hover .product-overlay { opacity: 1; }
+.product-overlay-text {
+  color: white;
+  font-size: 11px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+}
+.product-info {
+  padding: 24px 28px;
+  border-top: 1px solid var(--border);
+}
+.product-name {
+  font-family: var(--serif);
+  font-size: 22px;
+  font-weight: 400;
+  color: var(--charcoal);
+  margin-bottom: 4px;
+}
+.product-material {
+  font-size: 11px;
+  letter-spacing: 1.5px;
+  color: var(--warm-mid);
+  text-transform: uppercase;
+}
+.product-price {
+  font-family: var(--serif);
+  font-size: 18px;
+  color: var(--oak);
+  margin-top: 8px;
+}
+
+/* CRAFTSMANSHIP */
+.craft-section {
+  background: var(--charcoal);
+  padding: 100px 80px;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 100px;
+  align-items: center;
+}
+.craft-content {}
+.craft-eyebrow {
+  font-size: 10px;
+  letter-spacing: 4px;
+  text-transform: uppercase;
+  color: var(--oak);
+  margin-bottom: 20px;
+}
+.craft-title {
+  font-family: var(--serif);
+  font-size: clamp(38px, 4vw, 58px);
+  font-weight: 300;
+  color: white;
+  line-height: 1.1;
+  margin-bottom: 32px;
+}
+.craft-title em { font-style: italic; color: var(--oak-light); }
+.craft-text {
+  font-size: 15px;
+  color: rgba(255,255,255,0.55);
+  line-height: 1.85;
+  margin-bottom: 48px;
+}
+.craft-features {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 28px;
+}
+.craft-feat {
+  border-top: 1px solid rgba(184,129,42,0.3);
+  padding-top: 20px;
+}
+.craft-feat-title {
+  font-size: 12px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--oak-light);
+  margin-bottom: 8px;
+}
+.craft-feat-text {
+  font-size: 13px;
+  color: rgba(255,255,255,0.45);
+  line-height: 1.6;
+}
+.craft-visual {
+  position: relative;
+  height: 500px;
+  border: 1px solid rgba(184,129,42,0.2);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.craft-visual-inner {
+  text-align: center;
+}
+.craft-wood-grain {
+  width: 240px;
+  height: 320px;
+  margin: 0 auto 24px;
+  opacity: 0.25;
+}
+.craft-caption {
+  font-family: var(--serif);
+  font-style: italic;
+  font-size: 18px;
+  color: rgba(255,255,255,0.4);
+  letter-spacing: 1px;
+}
+
+/* LANGUAGES SECTION */
+.languages-section {
+  padding: 80px;
+  background: white;
+  border-top: 1px solid var(--border);
+  border-bottom: 1px solid var(--border);
+}
+.lang-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1px;
+  background: var(--border);
+  margin-top: 48px;
+}
+.lang-card {
+  background: white;
+  padding: 32px 28px;
+  cursor: pointer;
+  transition: background 0.2s;
+  position: relative;
+}
+.lang-card:hover { background: var(--cream); }
+.lang-card.active-lang {
+  background: var(--charcoal);
+}
+.lang-flag {
+  font-size: 28px;
+  margin-bottom: 14px;
+  display: block;
+}
+.lang-name {
+  font-family: var(--serif);
+  font-size: 20px;
+  font-weight: 400;
+  color: var(--charcoal);
+  margin-bottom: 4px;
+}
+.lang-card.active-lang .lang-name { color: white; }
+.lang-native {
+  font-size: 12px;
+  color: var(--warm-mid);
+  letter-spacing: 1px;
+}
+.lang-card.active-lang .lang-native { color: rgba(255,255,255,0.45); }
+.lang-sample {
+  margin-top: 14px;
+  font-size: 13px;
+  color: var(--warm-mid);
+  font-style: italic;
+  line-height: 1.5;
+  display: none;
+}
+.lang-card.active-lang .lang-sample {
+  display: block;
+  color: rgba(255,255,255,0.6);
+}
+
+/* CONTACT / CTA */
+.cta-section {
+  padding: 120px 80px;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+}
+.cta-bg-text {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-family: var(--serif);
+  font-size: 200px;
+  font-weight: 300;
+  color: rgba(184,129,42,0.05);
+  white-space: nowrap;
+  pointer-events: none;
+  letter-spacing: -8px;
+}
+.cta-eyebrow {
+  font-size: 10px;
+  letter-spacing: 4px;
+  text-transform: uppercase;
+  color: var(--oak);
+  margin-bottom: 24px;
+}
+.cta-title {
+  font-family: var(--serif);
+  font-size: clamp(42px, 5vw, 72px);
+  font-weight: 300;
+  line-height: 1.1;
+  margin-bottom: 24px;
+  color: var(--charcoal);
+}
+.cta-title em { font-style: italic; color: var(--oak); }
+.cta-subtitle {
+  font-size: 15px;
+  color: var(--warm-mid);
+  max-width: 500px;
+  margin: 0 auto 48px;
+}
+.contact-form {
+  display: flex;
+  gap: 0;
+  max-width: 520px;
+  margin: 0 auto 20px;
+}
+.contact-form input {
+  flex: 1;
+  padding: 16px 24px;
+  border: 1px solid var(--border);
+  background: white;
+  font-family: var(--sans);
+  font-size: 14px;
+  color: var(--charcoal);
+  outline: none;
+  border-right: none;
+}
+.contact-form input:focus { border-color: var(--oak); }
+.contact-form button {
+  background: var(--oak);
+  color: white;
+  border: none;
+  padding: 16px 32px;
+  font-family: var(--sans);
+  font-size: 11px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  cursor: pointer;
+  white-space: nowrap;
+  transition: background 0.2s;
+}
+.contact-form button:hover { background: var(--oak-dark); }
+.cta-note {
+  font-size: 12px;
+  color: rgba(107,93,74,0.6);
+  letter-spacing: 0.5px;
+}
+
+/* FOOTER */
+footer {
+  background: var(--charcoal);
+  padding: 60px 80px 40px;
+  display: grid;
+  grid-template-columns: 2fr 1fr 1fr 1fr;
+  gap: 60px;
+}
+.footer-brand {
+  font-family: var(--serif);
+  font-size: 24px;
+  letter-spacing: 4px;
+  color: white;
+  text-transform: uppercase;
+  margin-bottom: 16px;
+}
+.footer-brand span { color: var(--oak); }
+.footer-tagline {
+  font-size: 13px;
+  color: rgba(255,255,255,0.35);
+  line-height: 1.7;
+  margin-bottom: 28px;
+  max-width: 260px;
+}
+.footer-legal {
+  font-size: 11px;
+  color: rgba(255,255,255,0.2);
+  line-height: 1.6;
+}
+.footer-col-title {
+  font-size: 10px;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: var(--oak);
+  margin-bottom: 20px;
+}
+.footer-links { list-style: none; }
+.footer-links li { margin-bottom: 10px; }
+.footer-links a {
+  text-decoration: none;
+  font-size: 13px;
+  color: rgba(255,255,255,0.4);
+  transition: color 0.2s;
+}
+.footer-links a:hover { color: var(--oak-light); }
+.footer-bottom {
+  background: var(--charcoal);
+  padding: 20px 80px;
+  border-top: 1px solid rgba(255,255,255,0.06);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.footer-copy {
+  font-size: 11px;
+  color: rgba(255,255,255,0.2);
+  letter-spacing: 0.5px;
+}
+
+/* ANIMATIONS */
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(30px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+.hero-content > * {
+  animation: fadeUp 0.8s ease both;
+}
+.hero-eyebrow { animation-delay: 0.1s; }
+.hero-title { animation-delay: 0.25s; }
+.hero-desc { animation-delay: 0.4s; }
+.hero-actions { animation-delay: 0.55s; }
+
+/* RESPONSIVE */
+@media (max-width: 900px) {
+  .hero { grid-template-columns: 1fr; min-height: auto; }
+  .hero-visual { display: none; }
+  .hero-content { padding: 60px 32px; }
+  nav { padding: 20px 24px; }
+  .nav-links { display: none; }
+  .section { padding: 60px 24px; }
+  .section-header { flex-direction: column; align-items: flex-start; gap: 20px; }
+  .products-grid { grid-template-columns: 1fr; }
+  .product-card:first-child { grid-row: span 1; }
+  .catalog-controls { flex-direction: column; align-items: stretch; }
+  .catalog-search { max-width: none; }
+  .catalog-grid { grid-template-columns: 1fr 1fr; }
+  .craft-section { grid-template-columns: 1fr; padding: 60px 24px; gap: 40px; }
+  .craft-visual { display: none; }
+  .lang-grid { grid-template-columns: repeat(2, 1fr); }
+  .languages-section { padding: 60px 24px; }
+  .cta-section { padding: 80px 24px; }
+  .contact-form { flex-direction: column; }
+  .contact-form input { border-right: 1px solid var(--border); border-bottom: none; }
+  footer { grid-template-columns: 1fr; padding: 40px 24px; gap: 32px; }
+  .footer-bottom { padding: 20px 24px; flex-direction: column; gap: 8px; }
+  .lang-bar { padding: 8px 16px; }
+  .cta-bg-text { font-size: 80px; }
+}
+
+/* ===== PRODUCT DETAIL VIEW (single-file SPA) ===== */
+#detailRoot { background: var(--cream); min-height: 100vh; }
+.pd-topbar { background: var(--charcoal); padding: 18px 40px; display: flex; align-items: center; justify-content: space-between; }
+.pd-backlink { background: none; border: none; color: rgba(255,255,255,0.7); font-family: var(--sans); font-size: 11px; letter-spacing: 1.5px; text-transform: uppercase; display: flex; align-items: center; gap: 8px; cursor: pointer; transition: color 0.2s; }
+.pd-backlink:hover { color: var(--oak-light); }
+.pd-wordmark { font-family: var(--serif); font-size: 20px; color: var(--cream); letter-spacing: 1px; }
+.pd-wrap { max-width: 1180px; margin: 0 auto; padding: 56px 40px 20px; display: grid; grid-template-columns: 1.1fr 1fr; gap: 64px; }
+.pd-gallery-main { aspect-ratio: 1/1; overflow: hidden; background: #E8DFD0; border: 1px solid var(--border); }
+.pd-gallery-main img { width: 100%; height: 100%; object-fit: cover; display: block; }
+.pd-thumbstrip { display: flex; gap: 10px; margin-top: 14px; flex-wrap: wrap; }
+.pd-thumbbtn { width: 64px; height: 64px; padding: 0; border: 1px solid var(--border); background: none; cursor: pointer; overflow: hidden; opacity: 0.6; transition: all 0.2s; }
+.pd-thumbbtn img { width: 100%; height: 100%; object-fit: cover; display: block; }
+.pd-thumbbtn:hover { opacity: 0.85; }
+.pd-thumbbtn.active { opacity: 1; border-color: var(--oak); }
+.pd-infocol { padding-top: 6px; }
+.pd-cattag { font-size: 11px; letter-spacing: 2px; text-transform: uppercase; color: var(--oak-dark); margin-bottom: 14px; }
+.pd-title { font-family: var(--serif); font-size: 36px; font-weight: 400; line-height: 1.15; margin-bottom: 14px; }
+.pd-desc { font-size: 14px; color: var(--warm-mid); margin-bottom: 30px; max-width: 480px; }
+.pd-variant-group { margin-bottom: 28px; }
+.pd-variant-title { font-family: var(--sans); font-size: 16px; font-weight: 500; color: var(--charcoal); margin-bottom: 14px; }
+.pd-swatch-row { display: flex; gap: 14px; flex-wrap: wrap; }
+.pd-swatch-tile { background: none; border: none; cursor: pointer; display: flex; flex-direction: column; align-items: center; gap: 8px; width: 96px; font-family: var(--sans); }
+.pd-swatch-media { position: relative; width: 96px; height: 96px; border: 2px solid transparent; overflow: hidden; background: #E8DFD0; transition: border-color 0.2s; }
+.pd-swatch-media img, .pd-swatch-media svg { width: 100%; height: 100%; object-fit: cover; display: block; }
+.pd-swatch-color { width: 100%; height: 100%; }
+.pd-swatch-tile.selected .pd-swatch-media { border-color: var(--charcoal); }
+.pd-swatch-check { position: absolute; top: 6px; right: 6px; width: 22px; height: 22px; border-radius: 50%; background: rgba(30,26,20,0.82); color: #fff; font-size: 13px; display: flex; align-items: center; justify-content: center; }
+.pd-swatch-label { font-size: 11.5px; color: var(--warm-mid); text-align: center; line-height: 1.3; }
+.pd-swatch-tile.selected .pd-swatch-label { color: var(--charcoal); font-weight: 500; }
+.pd-price-row { font-family: var(--serif); font-size: 30px; color: var(--oak-dark); margin: 30px 0 26px; }
+.pd-cta-row { display: flex; gap: 18px; align-items: center; margin-bottom: 8px; }
+.pd-note-text { font-size: 12px; color: var(--warm-mid); margin-top: 18px; max-width: 420px; }
+.pd-note-text a { color: var(--oak-dark); border-bottom: 1px solid var(--border); }
+.pd-related-section { max-width: 1180px; margin: 70px auto 0; padding: 50px 40px 80px; border-top: 1px solid var(--border); }
+.pd-related-eyebrow { font-size: 11px; letter-spacing: 2px; text-transform: uppercase; color: var(--oak-dark); margin-bottom: 24px; }
+.pd-related-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 28px; }
+.pd-related-card { display: block; cursor: pointer; }
+.pd-related-img { aspect-ratio: 1/1; overflow: hidden; background: #E8DFD0; margin-bottom: 12px; }
+.pd-related-img img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.4s; }
+.pd-related-card:hover .pd-related-img img { transform: scale(1.05); }
+.pd-related-name { font-family: var(--serif); font-size: 17px; margin-bottom: 4px; }
+.pd-related-price { font-size: 12px; color: var(--warm-mid); }
+.pd-footer { background: var(--charcoal); color: rgba(255,255,255,0.55); padding: 30px 40px; text-align: center; font-size: 12px; }
+.pd-footer a { color: var(--oak-light); }
+@media (max-width: 860px) {
+  .pd-wrap { grid-template-columns: 1fr; gap: 32px; padding: 32px 22px 10px; }
+  .pd-related-section { padding: 40px 22px 60px; }
+  .pd-related-grid { grid-template-columns: 1fr 1fr; gap: 16px; }
+  .pd-title { font-size: 27px; }
+  .pd-topbar { padding: 16px 22px; }
+}
+</style>
+</head>
+<body>
+<div id="catalogRoot">
+
+<!-- LANGUAGE BAR -->
+<div class="lang-bar">
+  <button class="lang-btn active" onclick="setLang('en')">EN</button>
+  <span class="lang-sep">·</span>
+  <button class="lang-btn" onclick="setLang('de')">DE</button>
+  <span class="lang-sep">·</span>
+  <button class="lang-btn" onclick="setLang('fr')">FR</button>
+  <span class="lang-sep">·</span>
+  <button class="lang-btn" onclick="setLang('cs')">CZ</button>
+  <span class="lang-sep">·</span>
+  <button class="lang-btn" onclick="setLang('pl')">PL</button>
+  <span class="lang-sep">·</span>
+  <button class="lang-btn" onclick="setLang('it')">IT</button>
+  <span class="lang-sep">·</span>
+  <button class="lang-btn" onclick="setLang('es')">ES</button>
+  <span class="lang-sep">·</span>
+  <button class="lang-btn" onclick="setLang('nl')">NL</button>
+  <span class="lang-sep">·</span>
+  <button class="lang-btn" onclick="setLang('sk')">SK</button>
+  <span class="lang-sep">·</span>
+  <button class="lang-btn" onclick="setLang('uk')">UA</button>
+</div>
+
+<!-- NAV -->
+<nav>
+  <div class="logo">Arden<span>Wood</span></div>
+  <ul class="nav-links">
+    <li><a href="#" data-i18n="nav.collection">Collection</a></li>
+    <li><a href="#" data-i18n="nav.crafts">Craftsmanship</a></li>
+    <li><a href="#" data-i18n="nav.custom">Custom Order</a></li>
+    <li><a href="#" data-i18n="nav.about">About</a></li>
+    <li><a href="#" data-i18n="nav.contact">Contact</a></li>
+  </ul>
+  <button class="nav-cta" data-i18n="nav.cta">Get a Quote</button>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-content">
+    <div class="hero-eyebrow" data-i18n="hero.eyebrow">Handcrafted since 2018 · Ostrava, Czech Republic</div>
+    <h1 class="hero-title" data-i18n="hero.title">Where Oak<br>Becomes <em>Art</em></h1>
+    <p class="hero-desc" data-i18n="hero.desc">Each piece is crafted from solid European oak by hand. No mass production. No compromises. Only furniture that will outlive generations.</p>
+    <div class="hero-actions">
+      <button class="btn-primary" data-i18n="hero.btn1">View Collection</button>
+      <button class="btn-ghost" data-i18n="hero.btn2">Our Process</button>
+    </div>
+  </div>
+  <div class="hero-visual">
+    <div class="hero-visual-bg"></div>
+    <div class="hero-wood-texture">
+      <div class="wood-rings">
+        <svg viewBox="0 0 300 300" xmlns="http://www.w3.org/2000/svg">
+          <g fill="none" stroke="#B8812A" stroke-width="0.8">
+            <ellipse cx="150" cy="150" rx="140" ry="110"/>
+            <ellipse cx="150" cy="150" rx="120" ry="94"/>
+            <ellipse cx="150" cy="150" rx="100" ry="78"/>
+            <ellipse cx="150" cy="150" rx="82" ry="63"/>
+            <ellipse cx="150" cy="150" rx="65" ry="49"/>
+            <ellipse cx="150" cy="150" rx="50" ry="36"/>
+            <ellipse cx="150" cy="150" rx="36" ry="25"/>
+            <ellipse cx="150" cy="150" rx="23" ry="15"/>
+            <ellipse cx="150" cy="150" rx="12" ry="7"/>
+            <line x1="10" y1="150" x2="290" y2="150" stroke-dasharray="3 8" opacity="0.4"/>
+            <line x1="150" y1="40" x2="155" y2="260" stroke-dasharray="2 10" opacity="0.3"/>
+            <line x1="50" y1="60" x2="255" y2="240" stroke-dasharray="2 12" opacity="0.2"/>
+          </g>
+        </svg>
+      </div>
+    </div>
+    <div class="hero-stats">
+      <div class="stat-item">
+        <div class="stat-num">100%</div>
+        <div class="stat-label" data-i18n="stat.solid">Solid Oak</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-num">EU</div>
+        <div class="stat-label" data-i18n="stat.delivery">Delivery</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-num">∞</div>
+        <div class="stat-label" data-i18n="stat.custom">Customisable</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- MARQUEE -->
+<div class="marquee-strip">
+  <div class="marquee-inner">
+    <span class="marquee-item"><span class="marquee-dot"></span>Solid European Oak</span>
+    <span class="marquee-item"><span class="marquee-dot"></span>Handcrafted in Czech Republic</span>
+    <span class="marquee-item"><span class="marquee-dot"></span>Custom Dimensions</span>
+    <span class="marquee-item"><span class="marquee-dot"></span>EU-wide Delivery</span>
+    <span class="marquee-item"><span class="marquee-dot"></span>Oil Finish · Natural</span>
+    <span class="marquee-item"><span class="marquee-dot"></span>IK Arden Group</span>
+    <span class="marquee-item"><span class="marquee-dot"></span>Solid European Oak</span>
+    <span class="marquee-item"><span class="marquee-dot"></span>Handcrafted in Czech Republic</span>
+    <span class="marquee-item"><span class="marquee-dot"></span>Custom Dimensions</span>
+    <span class="marquee-item"><span class="marquee-dot"></span>EU-wide Delivery</span>
+    <span class="marquee-item"><span class="marquee-dot"></span>Oil Finish · Natural</span>
+    <span class="marquee-item"><span class="marquee-dot"></span>IK Arden Group</span>
+  </div>
+</div>
+
+<!-- PRODUCTS -->
+<section class="section">
+  <div class="section-header">
+    <div>
+      <div class="section-eyebrow" data-i18n="products.eyebrow">Our Collection</div>
+      <h2 class="section-title" data-i18n="products.title">Every Piece<br>Tells a <em>Story</em></h2>
+    </div>
+  </div>
+
+  <div class="catalog-controls">
+    <div class="category-tabs" id="categoryTabs"></div>
+    <input type="text" id="productSearch" class="catalog-search" data-i18n-placeholder="cat.search" placeholder="Search products...">
+  </div>
+  <div class="catalog-count" id="catalogCount"></div>
+  <div class="products-grid catalog-grid" id="productsGrid"></div>
+</section>
+
+
+<!-- CRAFTSMANSHIP -->
+<section class="craft-section">
+  <div class="craft-content">
+    <div class="craft-eyebrow" data-i18n="craft.eyebrow">Why Arden Wood</div>
+    <h2 class="craft-title" data-i18n="craft.title">Built by Hand.<br><em>Built to Last.</em></h2>
+    <p class="craft-text" data-i18n="craft.text">Every table, door, and shelf that leaves our workshop in Ostrava carries the mark of real craft. We select each board personally. We shape every joint. We finish every surface with natural oil — never synthetic coating.</p>
+    <div class="craft-features">
+      <div class="craft-feat">
+        <div class="craft-feat-title" data-i18n="cf1.title">European Oak</div>
+        <div class="craft-feat-text" data-i18n="cf1.text">Sourced from certified European forests. Aged naturally, not kiln-dried in haste.</div>
+      </div>
+      <div class="craft-feat">
+        <div class="craft-feat-title" data-i18n="cf2.title">Custom Made</div>
+        <div class="craft-feat-text" data-i18n="cf2.text">Any dimension. Any finish. Any quantity. We work to your exact specification.</div>
+      </div>
+      <div class="craft-feat">
+        <div class="craft-feat-title" data-i18n="cf3.title">EU Delivery</div>
+        <div class="craft-feat-text" data-i18n="cf3.text">We ship across Europe. Works with architects, developers, and private clients.</div>
+      </div>
+      <div class="craft-feat">
+        <div class="craft-feat-title" data-i18n="cf4.title">Lifetime Quality</div>
+        <div class="craft-feat-text" data-i18n="cf4.text">Solid oak furniture gains character with age. This is not furniture you replace.</div>
+      </div>
+    </div>
+  </div>
+  <div class="craft-visual">
+    <div class="craft-visual-inner">
+      <svg class="craft-wood-grain" viewBox="0 0 240 320" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <rect x="1" y="1" width="238" height="318" rx="4" stroke="#B8812A" stroke-width="0.5"/>
+        <path d="M0 30 Q60 25 120 32 Q180 40 240 28" stroke="#B8812A" stroke-width="0.4" fill="none"/>
+        <path d="M0 55 Q80 48 160 58 Q200 63 240 50" stroke="#B8812A" stroke-width="0.6" fill="none"/>
+        <path d="M0 78 Q40 74 120 80 Q190 86 240 72" stroke="#B8812A" stroke-width="0.3" fill="none"/>
+        <path d="M0 102 Q100 95 180 105 Q210 110 240 98" stroke="#B8812A" stroke-width="0.5" fill="none"/>
+        <path d="M0 128 Q70 120 150 130 Q195 136 240 122" stroke="#B8812A" stroke-width="0.4" fill="none"/>
+        <path d="M0 155 Q90 148 170 158 Q205 163 240 150" stroke="#B8812A" stroke-width="0.6" fill="none"/>
+        <path d="M0 180 Q50 175 130 182 Q190 188 240 174" stroke="#B8812A" stroke-width="0.3" fill="none"/>
+        <ellipse cx="85" cy="100" rx="18" ry="12" stroke="#B8812A" stroke-width="0.5" fill="none"/>
+        <ellipse cx="85" cy="100" rx="10" ry="6" stroke="#B8812A" stroke-width="0.4" fill="none"/>
+        <ellipse cx="85" cy="100" rx="4" ry="2.5" stroke="#B8812A" stroke-width="0.6" fill="none"/>
+        <path d="M0 205 Q110 198 200 208 Q220 212 240 200" stroke="#B8812A" stroke-width="0.4" fill="none"/>
+        <path d="M0 232 Q60 226 140 234 Q195 240 240 226" stroke="#B8812A" stroke-width="0.5" fill="none"/>
+        <path d="M0 258 Q80 252 160 260 Q205 266 240 252" stroke="#B8812A" stroke-width="0.3" fill="none"/>
+        <path d="M0 285 Q100 278 180 287 Q215 292 240 278" stroke="#B8812A" stroke-width="0.5" fill="none"/>
+      </svg>
+      <div class="craft-caption">Quercus robur</div>
+    </div>
+  </div>
+</section>
+
+<!-- LANGUAGES -->
+<section class="languages-section">
+  <div class="section-eyebrow" data-i18n="lang.eyebrow">Available in your language</div>
+  <h2 class="section-title" data-i18n="lang.title">We Speak<br><em>Your Language</em></h2>
+  <div class="lang-grid" id="langGrid">
+    <div class="lang-card active-lang" data-lang="en" onclick="setLang('en');activeLangCard(this)">
+      <span class="lang-flag">🇬🇧</span>
+      <div class="lang-name">English</div>
+      <div class="lang-native">English</div>
+      <div class="lang-sample">"Solid oak, handcrafted to order. Delivered across Europe."</div>
+    </div>
+    <div class="lang-card" data-lang="de" onclick="setLang('de');activeLangCard(this)">
+      <span class="lang-flag">🇩🇪</span>
+      <div class="lang-name">Deutsch</div>
+      <div class="lang-native">German</div>
+      <div class="lang-sample">"Massivholz aus Eiche, handgefertigt auf Bestellung."</div>
+    </div>
+    <div class="lang-card" data-lang="fr" onclick="setLang('fr');activeLangCard(this)">
+      <span class="lang-flag">🇫🇷</span>
+      <div class="lang-name">Français</div>
+      <div class="lang-native">French</div>
+      <div class="lang-sample">"Chêne massif, fabriqué à la main sur commande."</div>
+    </div>
+    <div class="lang-card" data-lang="cs" onclick="setLang('cs');activeLangCard(this)">
+      <span class="lang-flag">🇨🇿</span>
+      <div class="lang-name">Čeština</div>
+      <div class="lang-native">Czech</div>
+      <div class="lang-sample">"Masivní dub, ručně vyrobený na zakázku."</div>
+    </div>
+    <div class="lang-card" data-lang="pl" onclick="setLang('pl');activeLangCard(this)">
+      <span class="lang-flag">🇵🇱</span>
+      <div class="lang-name">Polski</div>
+      <div class="lang-native">Polish</div>
+      <div class="lang-sample">"Lity dąb, ręcznie wykonany na zamówienie."</div>
+    </div>
+    <div class="lang-card" data-lang="it" onclick="setLang('it');activeLangCard(this)">
+      <span class="lang-flag">🇮🇹</span>
+      <div class="lang-name">Italiano</div>
+      <div class="lang-native">Italian</div>
+      <div class="lang-sample">"Rovere massello, lavorato a mano su ordinazione."</div>
+    </div>
+    <div class="lang-card" data-lang="es" onclick="setLang('es');activeLangCard(this)">
+      <span class="lang-flag">🇪🇸</span>
+      <div class="lang-name">Español</div>
+      <div class="lang-native">Spanish</div>
+      <div class="lang-sample">"Roble macizo, fabricado a mano bajo pedido."</div>
+    </div>
+    <div class="lang-card" data-lang="nl" onclick="setLang('nl');activeLangCard(this)">
+      <span class="lang-flag">🇳🇱</span>
+      <div class="lang-name">Nederlands</div>
+      <div class="lang-native">Dutch</div>
+      <div class="lang-sample">"Massief eikenhout, handgemaakt op bestelling."</div>
+    </div>
+    <div class="lang-card" data-lang="sk" onclick="setLang('sk');activeLangCard(this)">
+      <span class="lang-flag">🇸🇰</span>
+      <div class="lang-name">Slovenčina</div>
+      <div class="lang-native">Slovak</div>
+      <div class="lang-sample">"Masívny dub, ručne vyrobený na objednávku."</div>
+    </div>
+    <div class="lang-card" data-lang="uk" onclick="setLang('uk');activeLangCard(this)">
+      <span class="lang-flag">🇺🇦</span>
+      <div class="lang-name">Українська</div>
+      <div class="lang-native">Ukrainian</div>
+      <div class="lang-sample">"Масив дуба, виготовлено вручну на замовлення."</div>
+    </div>
+    <div class="lang-card" data-lang="ro" onclick="setLang('ro');activeLangCard(this)">
+      <span class="lang-flag">🇷🇴</span>
+      <div class="lang-name">Română</div>
+      <div class="lang-native">Romanian</div>
+      <div class="lang-sample">"Stejar masiv, lucrat manual la comandă."</div>
+    </div>
+    <div class="lang-card" data-lang="hu" onclick="setLang('hu');activeLangCard(this)">
+      <span class="lang-flag">🇭🇺</span>
+      <div class="lang-name">Magyar</div>
+      <div class="lang-native">Hungarian</div>
+      <div class="lang-sample">"Tömör tölgy, kézzel készítve rendelésre."</div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="cta-section">
+  <div class="cta-bg-text">OAK</div>
+  <div class="cta-eyebrow" data-i18n="cta.eyebrow">Ready to Order?</div>
+  <h2 class="cta-title" data-i18n="cta.title">Your <em>Perfect</em><br>Piece Awaits</h2>
+  <p class="cta-subtitle" data-i18n="cta.subtitle">Tell us what you have in mind. We reply within 24 hours in your language.</p>
+  <div class="contact-form">
+    <input type="email" data-i18n-placeholder="cta.email" placeholder="Your email address">
+    <button data-i18n="cta.send">Send Request</button>
+  </div>
+  <p class="cta-note" data-i18n="cta.note">No commitment. Free consultation. We reply in your language.</p>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div>
+    <div class="footer-brand">Arden<span>Wood</span></div>
+    <p class="footer-tagline" data-i18n="footer.tagline">Handcrafted oak furniture from the heart of Europe. Delivered across the EU.</p>
+    <p class="footer-legal">© 2024 IK Arden Group s.r.o.<br>Ostrava, Czech Republic<br>ardenwood.eu</p>
+  </div>
+  <div>
+    <div class="footer-col-title" data-i18n="footer.products">Products</div>
+    <ul class="footer-links">
+      <li><a href="#" data-i18n="fp.tables">Tables</a></li>
+      <li><a href="#" data-i18n="fp.doors">Doors</a></li>
+      <li><a href="#" data-i18n="fp.shelving">Shelving</a></li>
+      <li><a href="#" data-i18n="fp.kitchen">Kitchen</a></li>
+      <li><a href="#" data-i18n="fp.custom">Custom</a></li>
+    </ul>
+  </div>
+  <div>
+    <div class="footer-col-title" data-i18n="footer.info">Information</div>
+    <ul class="footer-links">
+      <li><a href="#" data-i18n="fi.about">About Us</a></li>
+      <li><a href="#" data-i18n="fi.process">Our Process</a></li>
+      <li><a href="#" data-i18n="fi.delivery">Delivery</a></li>
+      <li><a href="#" data-i18n="fi.care">Wood Care</a></li>
+      <li><a href="#" data-i18n="fi.faq">FAQ</a></li>
+    </ul>
+  </div>
+  <div>
+    <div class="footer-col-title" data-i18n="footer.contact">Contact</div>
+    <ul class="footer-links">
+      <li><a href="#">info@ardenwood.eu</a></li>
+      <li><a href="#">Instagram</a></li>
+      <li><a href="#">TikTok</a></li>
+      <li><a href="#" data-i18n="fc.quote">Get a Quote</a></li>
+    </ul>
+  </div>
+</footer>
+<div class="footer-bottom">
+  <span class="footer-copy">© 2024 IK Arden Group s.r.o. · All rights reserved</span>
+  <span class="footer-copy">ardenwood.eu · Solid European Oak Furniture</span>
+</div>
+
+</div><!-- /catalogRoot -->
+
+<div id="detailRoot" style="display:none"></div>
+
+<script>
+const translations = {
+  en: {
+    "nav.collection": "Collection", "nav.crafts": "Craftsmanship", "nav.custom": "Custom Order",
+    "cat.all": "All Products", "cat.coffee": "Coffee Tables", "cat.dining": "Dining Tables", "cat.tv": "TV Stands & Cabinets", "cat.shelving": "Shelving", "cat.kids": "Children's Beds", "cat.benches": "Benches", "cat.chairs": "Oak Chairs", "cat.side": "Side Tables", "cat.radiator": "Radiator Covers", "cat.bathroom": "Bathroom", "cat.pets": "Pet Furniture", "cat.legs": "Table Legs", "cat.search": "Search products...",
+    "price.from": "From", "catalog.count": "{n} products", "catalog.empty": "No products match your search.",
+    "nav.about": "About", "nav.contact": "Contact", "nav.cta": "Get a Quote",
+    "hero.eyebrow": "Handcrafted since 2018 · Ostrava, Czech Republic",
+    "hero.title": "Where Oak<br>Becomes <em>Art</em>",
+    "hero.desc": "Each piece is crafted from solid European oak by hand. No mass production. No compromises. Only furniture that will outlive generations.",
+    "hero.btn1": "View Collection", "hero.btn2": "Our Process",
+    "stat.solid": "Solid Oak", "stat.delivery": "EU Delivery", "stat.custom": "Customisable",
+    "products.eyebrow": "Our Collection", "products.title": "Every Piece<br>Tells a <em>Story</em>",
+    "products.all": "View all products",
+    "product.inquire": "Inquire →", "product.viewDetails": "View Details →",
+    "p1.name": "Beskydos Coffee Table", "p1.price": "From 12 542 Kč",
+    "p2.name": "El Klasiko Coffee Table", "p2.price": "From 12 542 Kč",
+    "p3.name": "ArtTwo Coffee Table", "p3.price": "From 14 882 Kč",
+    "p4.name": "Dubkoun Side Table", "p4.price": "2 170 Kč",
+    "craft.eyebrow": "Why Arden Wood",
+    "craft.title": "Built by Hand.<br><em>Built to Last.</em>",
+    "craft.text": "Every table, door, and shelf that leaves our workshop in Ostrava carries the mark of real craft. We select each board personally. We shape every joint. We finish every surface with natural oil — never synthetic coating.",
+    "cf1.title": "European Oak", "cf1.text": "Sourced from certified European forests. Aged naturally, not kiln-dried in haste.",
+    "cf2.title": "Custom Made", "cf2.text": "Any dimension. Any finish. Any quantity. We work to your exact specification.",
+    "cf3.title": "EU Delivery", "cf3.text": "We ship across Europe. Works with architects, developers, and private clients.",
+    "cf4.title": "Lifetime Quality", "cf4.text": "Solid oak furniture gains character with age. This is not furniture you replace.",
+    "lang.eyebrow": "Available in your language", "lang.title": "We Speak<br><em>Your Language</em>",
+    "cta.eyebrow": "Ready to Order?", "cta.title": "Your <em>Perfect</em><br>Piece Awaits",
+    "cta.subtitle": "Tell us what you have in mind. We reply within 24 hours in your language.",
+    "cta.email": "Your email address", "cta.send": "Send Request",
+    "cta.note": "No commitment. Free consultation. We reply in your language.",
+    "footer.tagline": "Handcrafted oak furniture from the heart of Europe. Delivered across the EU.",
+    "footer.products": "Products", "footer.info": "Information", "footer.contact": "Contact",
+    "fp.tables": "Tables", "fp.doors": "Doors", "fp.shelving": "Shelving", "fp.kitchen": "Kitchen", "fp.custom": "Custom",
+    "fi.about": "About Us", "fi.process": "Our Process", "fi.delivery": "Delivery", "fi.care": "Wood Care", "fi.faq": "FAQ",
+    "fc.quote": "Get a Quote"
+  },
+  de: {
+    "nav.collection": "Kollektion", "nav.crafts": "Handwerk", "nav.custom": "Sonderanfertigung",
+    "cat.all": "Alle Produkte", "cat.coffee": "Couchtische", "cat.dining": "Esstische", "cat.tv": "TV-Möbel & Kommoden", "cat.shelving": "Regale", "cat.kids": "Kinderbetten", "cat.benches": "Sitzbänke", "cat.chairs": "Eichenstühle", "cat.side": "Beistelltische", "cat.radiator": "Heizkörperverkleidungen", "cat.bathroom": "Bad", "cat.pets": "Haustiermöbel", "cat.legs": "Tischgestelle", "cat.search": "Produkte suchen...",
+    "price.from": "Ab", "catalog.count": "{n} Produkte", "catalog.empty": "Keine Produkte gefunden.",
+    "nav.about": "Über uns", "nav.contact": "Kontakt", "nav.cta": "Angebot anfragen",
+    "hero.eyebrow": "Handgefertigt seit 2018 · Ostrava, Tschechien",
+    "hero.title": "Wo Eiche zur<br><em>Kunst</em> wird",
+    "hero.desc": "Jedes Stück wird aus massiver europäischer Eiche von Hand gefertigt. Keine Massenproduktion. Keine Kompromisse. Nur Möbel, die Generationen überdauern.",
+    "hero.btn1": "Kollektion ansehen", "hero.btn2": "Unser Prozess",
+    "stat.solid": "Massiveiche", "stat.delivery": "EU-Lieferung", "stat.custom": "Maßgefertigt",
+    "products.eyebrow": "Unsere Kollektion", "products.title": "Jedes Stück<br>erzählt eine <em>Geschichte</em>",
+    "products.all": "Alle Produkte",
+    "product.inquire": "Anfragen →", "product.viewDetails": "Details ansehen →",
+    "p1.name": "Beskydos Couchtisch", "p1.price": "Ab 12 542 Kč",
+    "p2.name": "El Klasiko Couchtisch", "p2.price": "Ab 12 542 Kč",
+    "p3.name": "ArtTwo Couchtisch", "p3.price": "Ab 14 882 Kč",
+    "p4.name": "Dubkoun Beistelltisch", "p4.price": "2 170 Kč",
+    "craft.eyebrow": "Warum Arden Wood",
+    "craft.title": "Von Hand gebaut.<br><em>Für die Ewigkeit.</em>",
+    "craft.text": "Jeder Tisch, jede Tür und jedes Regal, das unsere Werkstatt in Ostrava verlässt, trägt das Zeichen echter Handwerkskunst. Wir wählen jedes Brett persönlich aus.",
+    "cf1.title": "Europäische Eiche", "cf1.text": "Aus zertifizierten europäischen Wäldern. Natürlich getrocknet.",
+    "cf2.title": "Maßanfertigung", "cf2.text": "Jedes Maß, jede Oberfläche, jede Menge. Nach Ihren Vorgaben.",
+    "cf3.title": "EU-Lieferung", "cf3.text": "Wir liefern europaweit. Für Architekten, Bauträger und Privatkunden.",
+    "cf4.title": "Lebenslange Qualität", "cf4.text": "Massivholzmöbel gewinnen mit dem Alter. Das sind keine Möbel, die man ersetzt.",
+    "lang.eyebrow": "In Ihrer Sprache verfügbar", "lang.title": "Wir sprechen<br><em>Ihre Sprache</em>",
+    "cta.eyebrow": "Bereit zu bestellen?", "cta.title": "Ihr <em>perfektes</em><br>Stück wartet",
+    "cta.subtitle": "Teilen Sie uns Ihre Vorstellung mit. Wir antworten innerhalb von 24 Stunden.",
+    "cta.email": "Ihre E-Mail-Adresse", "cta.send": "Anfrage senden",
+    "cta.note": "Unverbindlich. Kostenlose Beratung. Wir antworten auf Deutsch.",
+    "footer.tagline": "Handgefertigte Eichenmöbel aus dem Herzen Europas. EU-weite Lieferung.",
+    "footer.products": "Produkte", "footer.info": "Informationen", "footer.contact": "Kontakt",
+    "fp.tables": "Tische", "fp.doors": "Türen", "fp.shelving": "Regale", "fp.kitchen": "Küche", "fp.custom": "Sonderanfertigung",
+    "fi.about": "Über uns", "fi.process": "Unser Prozess", "fi.delivery": "Lieferung", "fi.care": "Holzpflege", "fi.faq": "FAQ",
+    "fc.quote": "Angebot anfragen"
+  },
+  fr: {
+    "nav.collection": "Collection", "nav.crafts": "Savoir-faire", "nav.custom": "Sur mesure",
+    "cat.all": "Tous les produits", "cat.coffee": "Tables basses", "cat.dining": "Tables à manger", "cat.tv": "Meubles TV & commodes", "cat.shelving": "Étagères", "cat.kids": "Lits enfant", "cat.benches": "Bancs", "cat.chairs": "Chaises en chêne", "cat.side": "Tables d'appoint", "cat.radiator": "Caches-radiateurs", "cat.bathroom": "Salle de bain", "cat.pets": "Meubles pour animaux", "cat.legs": "Pieds de table", "cat.search": "Rechercher des produits...",
+    "price.from": "À partir de", "catalog.count": "{n} produits", "catalog.empty": "Aucun produit trouvé.",
+    "nav.about": "À propos", "nav.contact": "Contact", "nav.cta": "Demander un devis",
+    "hero.eyebrow": "Artisanat depuis 2018 · Ostrava, République tchèque",
+    "hero.title": "Là où le Chêne<br>devient <em>Art</em>",
+    "hero.desc": "Chaque pièce est fabriquée à la main en chêne massif européen. Aucune production de masse. Aucun compromis. Uniquement des meubles qui traverseront les générations.",
+    "hero.btn1": "Voir la collection", "hero.btn2": "Notre processus",
+    "stat.solid": "Chêne massif", "stat.delivery": "Livraison UE", "stat.custom": "Sur mesure",
+    "products.eyebrow": "Notre Collection", "products.title": "Chaque pièce<br>raconte une <em>histoire</em>",
+    "products.all": "Tous les produits",
+    "product.inquire": "Renseignements →", "product.viewDetails": "Voir les détails →",
+    "p1.name": "Table basse Beskydos", "p1.price": "À partir de 12 542 Kč",
+    "p2.name": "Table basse El Klasiko", "p2.price": "À partir de 12 542 Kč",
+    "p3.name": "Table basse ArtTwo", "p3.price": "À partir de 14 882 Kč",
+    "p4.name": "Table d'appoint Dubkoun", "p4.price": "2 170 Kč",
+    "craft.eyebrow": "Pourquoi Arden Wood",
+    "craft.title": "Fait à la main.<br><em>Fait pour durer.</em>",
+    "craft.text": "Chaque table, porte et étagère qui quitte notre atelier d'Ostrava porte la marque du vrai artisanat. Nous sélectionnons chaque planche personnellement.",
+    "cf1.title": "Chêne européen", "cf1.text": "Issu de forêts européennes certifiées. Séché naturellement.",
+    "cf2.title": "Sur mesure", "cf2.text": "Toute dimension, toute finition, toute quantité. Selon vos spécifications.",
+    "cf3.title": "Livraison UE", "cf3.text": "Nous livrons dans toute l'Europe. Architectes, promoteurs et particuliers.",
+    "cf4.title": "Qualité à vie", "cf4.text": "Le mobilier en chêne massif gagne en caractère avec l'âge.",
+    "lang.eyebrow": "Disponible dans votre langue", "lang.title": "Nous parlons<br><em>votre langue</em>",
+    "cta.eyebrow": "Prêt à commander?", "cta.title": "Votre pièce <em>parfaite</em><br>vous attend",
+    "cta.subtitle": "Dites-nous ce que vous souhaitez. Nous répondons sous 24h dans votre langue.",
+    "cta.email": "Votre adresse email", "cta.send": "Envoyer la demande",
+    "cta.note": "Sans engagement. Consultation gratuite. Réponse en français.",
+    "footer.tagline": "Mobilier en chêne massif du cœur de l'Europe. Livraison dans toute l'UE.",
+    "footer.products": "Produits", "footer.info": "Informations", "footer.contact": "Contact",
+    "fp.tables": "Tables", "fp.doors": "Portes", "fp.shelving": "Étagères", "fp.kitchen": "Cuisine", "fp.custom": "Sur mesure",
+    "fi.about": "À propos", "fi.process": "Notre processus", "fi.delivery": "Livraison", "fi.care": "Entretien", "fi.faq": "FAQ",
+    "fc.quote": "Demander un devis"
+  },
+  cs: {
+    "nav.collection": "Kolekce", "nav.crafts": "Řemeslo", "nav.custom": "Na zakázku",
+    "cat.all": "Všechny produkty", "cat.coffee": "Konferenční stolky", "cat.dining": "Jídelní stoly", "cat.tv": "TV stolky a skříně", "cat.shelving": "Police a regály", "cat.kids": "Dětské postele", "cat.benches": "Lavice", "cat.chairs": "Dubové židle", "cat.side": "Odkládací stolky", "cat.radiator": "Kryty na radiátor", "cat.bathroom": "Koupelna", "cat.pets": "Domácí mazlíčci", "cat.legs": "Podnože", "cat.search": "Hledat produkty...",
+    "price.from": "Od", "catalog.count": "{n} produktů", "catalog.empty": "Žádné produkty neodpovídají hledání.",
+    "nav.about": "O nás", "nav.contact": "Kontakt", "nav.cta": "Poptat cenu",
+    "hero.eyebrow": "Ručně vyráběno od 2018 · Ostrava, Česká republika",
+    "hero.title": "Kde Dub<br>se stává <em>Uměním</em>",
+    "hero.desc": "Každý kus je ručně vyroben z masivního evropského dubu. Žádná sériová výroba. Žádné kompromisy. Jen nábytek, který přežije generace.",
+    "hero.btn1": "Prohlédnout kolekci", "hero.btn2": "Náš proces",
+    "stat.solid": "Masivní dub", "stat.delivery": "Doručení EU", "stat.custom": "Na zakázku",
+    "products.eyebrow": "Naše Kolekce", "products.title": "Každý kus<br>vypráví <em>příběh</em>",
+    "products.all": "Všechny produkty",
+    "product.inquire": "Poptat →", "product.viewDetails": "Zobrazit detail →",
+    "p1.name": "Konferenční stůl Beskydos", "p1.price": "Od 12 542 Kč",
+    "p2.name": "Konferenční stůl El Klasiko", "p2.price": "Od 12 542 Kč",
+    "p3.name": "Konferenční stůl ArtTwo", "p3.price": "Od 14 882 Kč",
+    "p4.name": "Odkládací stolek Dubkoun", "p4.price": "2 170 Kč",
+    "craft.eyebrow": "Proč Arden Wood",
+    "craft.title": "Vyrobeno ručně.<br><em>Vyrobeno navěky.</em>",
+    "craft.text": "Každý stůl, dveře a polička, které opustí naši dílnu v Ostravě, nesou pečeť skutečného řemesla. Každé prkno vybíráme osobně.",
+    "cf1.title": "Evropský dub", "cf1.text": "Z certifikovaných evropských lesů. Přirozeně vysušený.",
+    "cf2.title": "Na zakázku", "cf2.text": "Jakýkoliv rozměr, povrch, množství. Přesně podle vašich požadavků.",
+    "cf3.title": "Doručení EU", "cf3.text": "Dodáváme po celé Evropě. Pro architekty, developery i soukromé klienty.",
+    "cf4.title": "Celoživotní kvalita", "cf4.text": "Masivní dubový nábytek získává s věkem charakter. To není nábytek, který nahrazujete.",
+    "lang.eyebrow": "Dostupné ve vašem jazyce", "lang.title": "Mluvíme<br><em>vaším jazykem</em>",
+    "cta.eyebrow": "Připraveni objednat?", "cta.title": "Váš <em>dokonalý</em><br>kus čeká",
+    "cta.subtitle": "Řekněte nám, co máte na mysli. Odpovíme do 24 hodin ve vašem jazyce.",
+    "cta.email": "Vaše e-mailová adresa", "cta.send": "Odeslat poptávku",
+    "cta.note": "Bez závazku. Bezplatná konzultace. Odpovídáme česky.",
+    "footer.tagline": "Ručně vyráběný dubový nábytek ze srdce Evropy. Doručení po celé EU.",
+    "footer.products": "Produkty", "footer.info": "Informace", "footer.contact": "Kontakt",
+    "fp.tables": "Stoly", "fp.doors": "Dveře", "fp.shelving": "Police", "fp.kitchen": "Kuchyně", "fp.custom": "Na zakázku",
+    "fi.about": "O nás", "fi.process": "Náš proces", "fi.delivery": "Doručení", "fi.care": "Péče o dřevo", "fi.faq": "FAQ",
+    "fc.quote": "Poptat cenu"
+  },
+  pl: {
+    "nav.collection": "Kolekcja", "nav.crafts": "Rzemiosło", "nav.custom": "Na zamówienie",
+    "cat.all": "Wszystkie produkty", "cat.coffee": "Stoliki kawowe", "cat.dining": "Stoły jadalniane", "cat.tv": "Szafki RTV i komody", "cat.shelving": "Półki i regały", "cat.kids": "Łóżka dziecięce", "cat.benches": "Ławki", "cat.chairs": "Krzesła dębowe", "cat.side": "Stoliki pomocnicze", "cat.radiator": "Osłony na grzejnik", "cat.bathroom": "Łazienka", "cat.pets": "Meble dla zwierząt", "cat.legs": "Nogi do stołów", "cat.search": "Szukaj produktów...",
+    "price.from": "Od", "catalog.count": "{n} produktów", "catalog.empty": "Brak produktów spełniających kryteria.",
+    "nav.about": "O nas", "nav.contact": "Kontakt", "nav.cta": "Zapytaj o cenę",
+    "hero.eyebrow": "Ręcznie wykonane od 2018 · Ostrava, Czechy",
+    "hero.title": "Gdzie Dąb<br>staje się <em>Sztuką</em>",
+    "hero.desc": "Każdy mebel wykonany jest ręcznie z litego europejskiego dębu. Bez masowej produkcji. Bez kompromisów. Meble, które przetrwają pokolenia.",
+    "hero.btn1": "Zobacz kolekcję", "hero.btn2": "Nasz proces",
+    "stat.solid": "Lity dąb", "stat.delivery": "Dostawa UE", "stat.custom": "Na zamówienie",
+    "products.eyebrow": "Nasza Kolekcja", "products.title": "Każdy mebel<br>opowiada <em>historię</em>",
+    "products.all": "Wszystkie produkty",
+    "product.inquire": "Zapytaj →", "product.viewDetails": "Zobacz szczegóły →",
+    "p1.name": "Stolik kawowy Beskydos", "p1.price": "Od 12 542 Kč",
+    "p2.name": "Stolik kawowy El Klasiko", "p2.price": "Od 12 542 Kč",
+    "p3.name": "Stolik kawowy ArtTwo", "p3.price": "Od 14 882 Kč",
+    "p4.name": "Stolik pomocniczy Dubkoun", "p4.price": "2 170 Kč",
+    "craft.eyebrow": "Dlaczego Arden Wood",
+    "craft.title": "Zrobione ręcznie.<br><em>Zrobione na wieki.</em>",
+    "craft.text": "Każdy stół, drzwi i półka opuszczające nasz warsztat w Ostrawie noszą znamię prawdziwego rzemiosła.",
+    "cf1.title": "Europejski dąb", "cf1.text": "Z certyfikowanych lasów europejskich. Naturalnie sezonowany.",
+    "cf2.title": "Na zamówienie", "cf2.text": "Dowolny wymiar, wykończenie, ilość. Według Twoich specyfikacji.",
+    "cf3.title": "Dostawa UE", "cf3.text": "Dostarczamy w całej Europie. Dla architektów, deweloperów i klientów prywatnych.",
+    "cf4.title": "Jakość na całe życie", "cf4.text": "Meble z litego dębu zyskują charakter z wiekiem.",
+    "lang.eyebrow": "Dostępne w Twoim języku", "lang.title": "Mówimy<br><em>Twoim językiem</em>",
+    "cta.eyebrow": "Gotowy do zamówienia?", "cta.title": "Twój <em>idealny</em><br>mebel czeka",
+    "cta.subtitle": "Powiedz nam, czego szukasz. Odpowiadamy w ciągu 24 godzin po polsku.",
+    "cta.email": "Twój adres e-mail", "cta.send": "Wyślij zapytanie",
+    "cta.note": "Bez zobowiązań. Bezpłatna konsultacja. Odpowiadamy po polsku.",
+    "footer.tagline": "Ręcznie wykonane meble dębowe z serca Europy. Dostawa w całej UE.",
+    "footer.products": "Produkty", "footer.info": "Informacje", "footer.contact": "Kontakt",
+    "fp.tables": "Stoły", "fp.doors": "Drzwi", "fp.shelving": "Półki", "fp.kitchen": "Kuchnia", "fp.custom": "Na zamówienie",
+    "fi.about": "O nas", "fi.process": "Nasz proces", "fi.delivery": "Dostawa", "fi.care": "Pielęgnacja drewna", "fi.faq": "FAQ",
+    "fc.quote": "Zapytaj o cenę"
+  },
+  it: {
+    "nav.collection": "Collezione", "nav.crafts": "Artigianato", "nav.custom": "Su misura",
+    "cat.all": "Tutti i prodotti", "cat.coffee": "Tavolini", "cat.dining": "Tavoli da pranzo", "cat.tv": "Mobili TV e credenze", "cat.shelving": "Mensole", "cat.kids": "Letti per bambini", "cat.benches": "Panche", "cat.chairs": "Sedie in rovere", "cat.side": "Tavolini d'appoggio", "cat.radiator": "Copri radiatori", "cat.bathroom": "Bagno", "cat.pets": "Mobili per animali", "cat.legs": "Gambe per tavoli", "cat.search": "Cerca prodotti...",
+    "price.from": "Da", "catalog.count": "{n} prodotti", "catalog.empty": "Nessun prodotto trovato.",
+    "nav.about": "Chi siamo", "nav.contact": "Contatti", "nav.cta": "Richiedi preventivo",
+    "hero.eyebrow": "Fatto a mano dal 2018 · Ostrava, Repubblica Ceca",
+    "hero.title": "Dove la Quercia<br>diventa <em>Arte</em>",
+    "hero.desc": "Ogni pezzo è realizzato a mano in rovere massello europeo. Nessuna produzione di massa. Nessun compromesso. Solo mobili che dureranno generazioni.",
+    "hero.btn1": "Vedi la collezione", "hero.btn2": "Il nostro processo",
+    "stat.solid": "Rovere massello", "stat.delivery": "Consegna UE", "stat.custom": "Su misura",
+    "products.eyebrow": "La Nostra Collezione", "products.title": "Ogni pezzo<br>racconta una <em>storia</em>",
+    "products.all": "Tutti i prodotti", "product.inquire": "Richiedi →", "product.viewDetails": "Vedi dettagli →",
+    "p1.name": "Tavolino Beskydos", "p1.price": "Da 12 542 Kč",
+    "p2.name": "Tavolino El Klasiko", "p2.price": "Da 12 542 Kč",
+    "p3.name": "Tavolino ArtTwo", "p3.price": "Da 14 882 Kč",
+    "p4.name": "Tavolino d'appoggio Dubkoun", "p4.price": "2 170 Kč",
+    "craft.eyebrow": "Perché Arden Wood",
+    "craft.title": "Fatto a mano.<br><em>Fatto per durare.</em>",
+    "craft.text": "Ogni tavolo, porta e scaffale che esce dal nostro laboratorio a Ostrava porta il segno della vera artigianalità.",
+    "cf1.title": "Rovere europeo", "cf1.text": "Da foreste europee certificate. Stagionato naturalmente.",
+    "cf2.title": "Su misura", "cf2.text": "Qualsiasi dimensione, finitura, quantità. Secondo le vostre specifiche.",
+    "cf3.title": "Consegna UE", "cf3.text": "Consegniamo in tutta Europa. Per architetti, developer e privati.",
+    "cf4.title": "Qualità a vita", "cf4.text": "I mobili in rovere massello acquistano carattere con l'età.",
+    "lang.eyebrow": "Disponibile nella tua lingua", "lang.title": "Parliamo<br><em>la tua lingua</em>",
+    "cta.eyebrow": "Pronto ad ordinare?", "cta.title": "Il tuo <em>pezzo perfetto</em><br>ti aspetta",
+    "cta.subtitle": "Dicci cosa desideri. Rispondiamo entro 24 ore nella tua lingua.",
+    "cta.email": "Il tuo indirizzo email", "cta.send": "Invia richiesta",
+    "cta.note": "Senza impegno. Consulenza gratuita. Risposta in italiano.",
+    "footer.tagline": "Mobili in rovere massello dal cuore d'Europa. Consegna in tutta l'UE.",
+    "footer.products": "Prodotti", "footer.info": "Informazioni", "footer.contact": "Contatti",
+    "fp.tables": "Tavoli", "fp.doors": "Porte", "fp.shelving": "Scaffali", "fp.kitchen": "Cucina", "fp.custom": "Su misura",
+    "fi.about": "Chi siamo", "fi.process": "Il nostro processo", "fi.delivery": "Consegna", "fi.care": "Cura del legno", "fi.faq": "FAQ",
+    "fc.quote": "Richiedi preventivo"
+  },
+  es: {
+    "nav.collection": "Colección", "nav.crafts": "Artesanía", "nav.custom": "A medida",
+    "cat.all": "Todos los productos", "cat.coffee": "Mesas de centro", "cat.dining": "Mesas de comedor", "cat.tv": "Muebles TV y cómodas", "cat.shelving": "Estanterías", "cat.kids": "Camas infantiles", "cat.benches": "Bancos", "cat.chairs": "Sillas de roble", "cat.side": "Mesas auxiliares", "cat.radiator": "Cubre radiadores", "cat.bathroom": "Baño", "cat.pets": "Muebles para mascotas", "cat.legs": "Patas de mesa", "cat.search": "Buscar productos...",
+    "price.from": "Desde", "catalog.count": "{n} productos", "catalog.empty": "No se encontraron productos.",
+    "nav.about": "Nosotros", "nav.contact": "Contacto", "nav.cta": "Pedir presupuesto",
+    "hero.eyebrow": "Hecho a mano desde 2018 · Ostrava, República Checa",
+    "hero.title": "Donde el Roble<br>se convierte en <em>Arte</em>",
+    "hero.desc": "Cada pieza está fabricada a mano en roble macizo europeo. Sin producción en masa. Sin compromisos. Solo muebles que durarán generaciones.",
+    "hero.btn1": "Ver colección", "hero.btn2": "Nuestro proceso",
+    "stat.solid": "Roble macizo", "stat.delivery": "Envío UE", "stat.custom": "A medida",
+    "products.eyebrow": "Nuestra Colección", "products.title": "Cada pieza<br>cuenta una <em>historia</em>",
+    "products.all": "Todos los productos", "product.inquire": "Consultar →", "product.viewDetails": "Ver detalles →",
+    "p1.name": "Mesa de centro Beskydos", "p1.price": "Desde 12 542 Kč",
+    "p2.name": "Mesa de centro El Klasiko", "p2.price": "Desde 12 542 Kč",
+    "p3.name": "Mesa de centro ArtTwo", "p3.price": "Desde 14 882 Kč",
+    "p4.name": "Mesa auxiliar Dubkoun", "p4.price": "2 170 Kč",
+    "craft.eyebrow": "Por qué Arden Wood",
+    "craft.title": "Hecho a mano.<br><em>Hecho para durar.</em>",
+    "craft.text": "Cada mesa, puerta y estante que sale de nuestro taller en Ostrava lleva la marca del verdadero artesanato.",
+    "cf1.title": "Roble europeo", "cf1.text": "De bosques europeos certificados. Secado naturalmente.",
+    "cf2.title": "A medida", "cf2.text": "Cualquier dimensión, acabado, cantidad. Según sus especificaciones.",
+    "cf3.title": "Envío UE", "cf3.text": "Enviamos por toda Europa. Para arquitectos, promotores y particulares.",
+    "cf4.title": "Calidad de por vida", "cf4.text": "Los muebles de roble macizo ganan carácter con la edad.",
+    "lang.eyebrow": "Disponible en su idioma", "lang.title": "Hablamos<br><em>su idioma</em>",
+    "cta.eyebrow": "¿Listo para pedir?", "cta.title": "Su pieza <em>perfecta</em><br>le espera",
+    "cta.subtitle": "Cuéntenos lo que necesita. Respondemos en 24 horas en su idioma.",
+    "cta.email": "Su dirección de correo", "cta.send": "Enviar solicitud",
+    "cta.note": "Sin compromiso. Consulta gratuita. Respondemos en español.",
+    "footer.tagline": "Muebles de roble macizo del corazón de Europa. Envío a toda la UE.",
+    "footer.products": "Productos", "footer.info": "Información", "footer.contact": "Contacto",
+    "fp.tables": "Mesas", "fp.doors": "Puertas", "fp.shelving": "Estanterías", "fp.kitchen": "Cocina", "fp.custom": "A medida",
+    "fi.about": "Nosotros", "fi.process": "Nuestro proceso", "fi.delivery": "Envío", "fi.care": "Cuidado de la madera", "fi.faq": "FAQ",
+    "fc.quote": "Pedir presupuesto"
+  },
+  nl: {
+    "nav.collection": "Collectie", "nav.crafts": "Vakmanschap", "nav.custom": "Op maat",
+    "cat.all": "Alle producten", "cat.coffee": "Salontafels", "cat.dining": "Eettafels", "cat.tv": "Tv-meubels & dressoirs", "cat.shelving": "Wandplanken", "cat.kids": "Kinderbedden", "cat.benches": "Banken", "cat.chairs": "Eiken stoelen", "cat.side": "Bijzettafels", "cat.radiator": "Radiatorombouwen", "cat.bathroom": "Badkamer", "cat.pets": "Huisdierenmeubels", "cat.legs": "Tafelpoten", "cat.search": "Producten zoeken...",
+    "price.from": "Vanaf", "catalog.count": "{n} producten", "catalog.empty": "Geen producten gevonden.",
+    "nav.about": "Over ons", "nav.contact": "Contact", "nav.cta": "Offerte aanvragen",
+    "hero.eyebrow": "Handgemaakt sinds 2018 · Ostrava, Tsjechië",
+    "hero.title": "Waar Eik<br><em>Kunst</em> wordt",
+    "hero.desc": "Elk stuk wordt met de hand vervaardigd uit massief Europees eikenhout. Geen massaproductie. Geen compromissen. Meubilair dat generaties meegaat.",
+    "hero.btn1": "Bekijk collectie", "hero.btn2": "Ons proces",
+    "stat.solid": "Massief eiken", "stat.delivery": "EU-levering", "stat.custom": "Op maat",
+    "products.eyebrow": "Onze Collectie", "products.title": "Elk stuk<br>vertelt een <em>verhaal</em>",
+    "products.all": "Alle producten", "product.inquire": "Informeren →", "product.viewDetails": "Bekijk details →",
+    "p1.name": "Beskydos salontafel", "p1.price": "Vanaf 12 542 Kč",
+    "p2.name": "El Klasiko salontafel", "p2.price": "Vanaf 12 542 Kč",
+    "p3.name": "ArtTwo salontafel", "p3.price": "Vanaf 14 882 Kč",
+    "p4.name": "Dubkoun bijzettafeltje", "p4.price": "2 170 Kč",
+    "craft.eyebrow": "Waarom Arden Wood",
+    "craft.title": "Met de hand gemaakt.<br><em>Gemaakt om te duren.</em>",
+    "craft.text": "Elk tafel, deur en rek dat onze werkplaats in Ostrava verlaat, draagt het stempel van echt vakmanschap.",
+    "cf1.title": "Europees eiken", "cf1.text": "Uit gecertificeerde Europese bossen. Natuurlijk gedroogd.",
+    "cf2.title": "Op maat", "cf2.text": "Elke afmeting, afwerking, hoeveelheid. Volgens uw specificaties.",
+    "cf3.title": "EU-levering", "cf3.text": "Wij leveren door heel Europa. Voor architecten, ontwikkelaars en particulieren.",
+    "cf4.title": "Levenslange kwaliteit", "cf4.text": "Massief eikenhouten meubels krijgen karakter met de leeftijd.",
+    "lang.eyebrow": "Beschikbaar in uw taal", "lang.title": "Wij spreken<br><em>uw taal</em>",
+    "cta.eyebrow": "Klaar om te bestellen?", "cta.title": "Uw <em>perfecte</em><br>stuk wacht",
+    "cta.subtitle": "Vertel ons wat u zoekt. Wij antwoorden binnen 24 uur in uw taal.",
+    "cta.email": "Uw e-mailadres", "cta.send": "Verzoek verzenden",
+    "cta.note": "Vrijblijvend. Gratis advies. Antwoord in het Nederlands.",
+    "footer.tagline": "Handgemaakt eikenhouten meubilair uit het hart van Europa. EU-levering.",
+    "footer.products": "Producten", "footer.info": "Informatie", "footer.contact": "Contact",
+    "fp.tables": "Tafels", "fp.doors": "Deuren", "fp.shelving": "Kasten", "fp.kitchen": "Keuken", "fp.custom": "Op maat",
+    "fi.about": "Over ons", "fi.process": "Ons proces", "fi.delivery": "Levering", "fi.care": "Houtonderhoud", "fi.faq": "FAQ",
+    "fc.quote": "Offerte aanvragen"
+  },
+  sk: {
+    "nav.collection": "Kolekcia", "nav.crafts": "Remeslo", "nav.custom": "Na objednávku",
+    "cat.all": "Všetky produkty", "cat.coffee": "Konferenčné stolíky", "cat.dining": "Jedálenské stoly", "cat.tv": "TV stolíky a skrine", "cat.shelving": "Police a regály", "cat.kids": "Detské postele", "cat.benches": "Lavice", "cat.chairs": "Dubové stoličky", "cat.side": "Odkladacie stolíky", "cat.radiator": "Kryty na radiátor", "cat.bathroom": "Kúpeľňa", "cat.pets": "Mobiliár pre domáce zvieratá", "cat.legs": "Podnože", "cat.search": "Hľadať produkty...",
+    "price.from": "Od", "catalog.count": "{n} produktov", "catalog.empty": "Žiadne produkty nezodpovedajú hľadaniu.",
+    "nav.about": "O nás", "nav.contact": "Kontakt", "nav.cta": "Pýtať cenu",
+    "hero.eyebrow": "Ručne vyrobené od 2018 · Ostrava, Česká republika",
+    "hero.title": "Kde Dub<br>sa stáva <em>Umením</em>",
+    "hero.desc": "Každý kus je ručne vyrobený z masívneho európskeho duba. Žiadna sériová výroba. Žiadne kompromisy. Nábytok pre generácie.",
+    "hero.btn1": "Pozrieť kolekciu", "hero.btn2": "Náš postup",
+    "stat.solid": "Masívny dub", "stat.delivery": "Doručenie EÚ", "stat.custom": "Na objednávku",
+    "products.eyebrow": "Naša Kolekcia", "products.title": "Každý kus<br>rozpráva <em>príbeh</em>",
+    "products.all": "Všetky produkty", "product.inquire": "Dopyt →", "product.viewDetails": "Zobraziť detail →",
+    "p1.name": "Konferenčný stôl Beskydos", "p1.price": "Od 12 542 Kč",
+    "p2.name": "Konferenčný stôl El Klasiko", "p2.price": "Od 12 542 Kč",
+    "p3.name": "Konferenčný stôl ArtTwo", "p3.price": "Od 14 882 Kč",
+    "p4.name": "Odkladací stolík Dubkoun", "p4.price": "2 170 Kč",
+    "craft.eyebrow": "Prečo Arden Wood",
+    "craft.title": "Vyrobené ručne.<br><em>Vyrobené navždy.</em>",
+    "craft.text": "Každý stôl, dvere a polica, ktoré opustia našu dielňu v Ostrave, nesú pečať skutočného remesla.",
+    "cf1.title": "Európsky dub", "cf1.text": "Z certifikovaných európskych lesov. Prirodzene vysušený.",
+    "cf2.title": "Na objednávku", "cf2.text": "Akýkoľvek rozmer, povrch, množstvo. Presne podľa vašich požiadaviek.",
+    "cf3.title": "Doručenie EÚ", "cf3.text": "Dodávame po celej Európe. Pre architektov, developerov a súkromných klientov.",
+    "cf4.title": "Celoživotná kvalita", "cf4.text": "Masívny dubový nábytok získava s vekom charakter.",
+    "lang.eyebrow": "Dostupné vo vašom jazyku", "lang.title": "Hovoríme<br><em>vaším jazykom</em>",
+    "cta.eyebrow": "Pripravení objednať?", "cta.title": "Váš <em>dokonalý</em><br>kus čaká",
+    "cta.subtitle": "Povedzte nám, čo hľadáte. Odpovieme do 24 hodín vo vašom jazyku.",
+    "cta.email": "Vaša e-mailová adresa", "cta.send": "Odoslať dopyt",
+    "cta.note": "Bez záväzku. Bezplatná konzultácia. Odpovedáme po slovensky.",
+    "footer.tagline": "Ručne vyrobený dubový nábytok zo srdca Európy. Doručenie po celej EÚ.",
+    "footer.products": "Produkty", "footer.info": "Informácie", "footer.contact": "Kontakt",
+    "fp.tables": "Stoly", "fp.doors": "Dvere", "fp.shelving": "Police", "fp.kitchen": "Kuchyňa", "fp.custom": "Na objednávku",
+    "fi.about": "O nás", "fi.process": "Náš postup", "fi.delivery": "Doručenie", "fi.care": "Starostlivosť o drevo", "fi.faq": "FAQ",
+    "fc.quote": "Pýtať cenu"
+  },
+  uk: {
+    "nav.collection": "Колекція", "nav.crafts": "Майстерність", "nav.custom": "На замовлення",
+    "cat.all": "Всі товари", "cat.coffee": "Журнальні столики", "cat.dining": "Обідні столи", "cat.tv": "ТВ-тумби та комоди", "cat.shelving": "Полиці та стелажі", "cat.kids": "Дитячі ліжка", "cat.benches": "Лавки", "cat.chairs": "Дубові стільці", "cat.side": "Приставні столики", "cat.radiator": "Накладки на радіатор", "cat.bathroom": "Ванна кімната", "cat.pets": "Меблі для тварин", "cat.legs": "Підножжя для столів", "cat.search": "Пошук товарів...",
+    "price.from": "Від", "catalog.count": "{n} товарів", "catalog.empty": "Товарів за вашим запитом не знайдено.",
+    "nav.about": "Про нас", "nav.contact": "Контакт", "nav.cta": "Отримати ціну",
+    "hero.eyebrow": "Ручна робота з 2018 · Острава, Чехія",
+    "hero.title": "Де Дуб<br>стає <em>Мистецтвом</em>",
+    "hero.desc": "Кожен виріб виготовлений вручну з масиву європейського дуба. Без серійного виробництва. Без компромісів. Меблі, що переживуть покоління.",
+    "hero.btn1": "Переглянути колекцію", "hero.btn2": "Наш процес",
+    "stat.solid": "Масив дуба", "stat.delivery": "Доставка ЄС", "stat.custom": "На замовлення",
+    "products.eyebrow": "Наша Колекція", "products.title": "Кожен виріб<br>розповідає <em>історію</em>",
+    "products.all": "Всі товари", "product.inquire": "Запитати →", "product.viewDetails": "Детальніше →",
+    "p1.name": "Журнальний стіл «Beskydos»", "p1.price": "Від 12 542 Kč",
+    "p2.name": "Журнальний стіл «El Klasiko»", "p2.price": "Від 12 542 Kč",
+    "p3.name": "Журнальний стіл «ArtTwo»", "p3.price": "Від 14 882 Kč",
+    "p4.name": "Приставний столик «Dubkoun»", "p4.price": "2 170 Kč",
+    "craft.eyebrow": "Чому Arden Wood",
+    "craft.title": "Зроблено вручну.<br><em>Зроблено назавжди.</em>",
+    "craft.text": "Кожен стіл, двері та стелаж, що виходять з нашої майстерні в Остраві, несуть печатку справжнього ремесла. Ми особисто відбираємо кожну дошку.",
+    "cf1.title": "Європейський дуб", "cf1.text": "З сертифікованих європейських лісів. Природне сушіння.",
+    "cf2.title": "На замовлення", "cf2.text": "Будь-який розмір, покриття, кількість. За вашими вимогами.",
+    "cf3.title": "Доставка ЄС", "cf3.text": "Доставляємо по всій Європі. Для архітекторів, забудовників і приватних клієнтів.",
+    "cf4.title": "Якість на все життя", "cf4.text": "Меблі з масиву дуба набувають характеру з роками.",
+    "lang.eyebrow": "Доступно вашою мовою", "lang.title": "Ми говоримо<br><em>вашою мовою</em>",
+    "cta.eyebrow": "Готові замовити?", "cta.title": "Ваш <em>ідеальний</em><br>виріб чекає",
+    "cta.subtitle": "Розкажіть нам про свою ідею. Відповідаємо протягом 24 годин вашою мовою.",
+    "cta.email": "Ваша електронна пошта", "cta.send": "Надіслати запит",
+    "cta.note": "Без зобов'язань. Безкоштовна консультація. Відповідаємо українською.",
+    "footer.tagline": "Меблі з масиву дуба ручної роботи з серця Європи. Доставка по всьому ЄС.",
+    "footer.products": "Товари", "footer.info": "Інформація", "footer.contact": "Контакт",
+    "fp.tables": "Столи", "fp.doors": "Двері", "fp.shelving": "Стелажі", "fp.kitchen": "Кухня", "fp.custom": "На замовлення",
+    "fi.about": "Про нас", "fi.process": "Наш процес", "fi.delivery": "Доставка", "fi.care": "Догляд за деревом", "fi.faq": "FAQ",
+    "fc.quote": "Отримати ціну"
+  }
+};
+
+/* ===== PRODUCT CATALOG (live data pulled from najodecor.cz) ===== */
+const PRODUCTS = [
+  {n:"Konferenční stolek Beskydos", c:"coffee", p:12542, f:true, img:"https://cdn.myshoptet.com/usr/www.najodecor.cz/user/shop/big/147_f38c2aa3-db17-4686-a28d-75c772065669.png?695e7100", slug:"konferencni-stolek-beskydos-2", hasDetail:true},
+  {n:"Konferenční stolek El Klasiko", c:"coffee", p:12542, f:true, img:"https://cdn.myshoptet.com/usr/www.najodecor.cz/user/shop/big/87-2_konferencni-stolek-el-klasiko--hrana-desky-prirodni--odstin-desky-tmavy-transparentni--velikost-130-x-70-.jpg?695e70fb", slug:"konferencni-stolek-el-klasiko", hasDetail:true},
+  {n:"Konferenční stolek ArtTwo", c:"coffee", p:14882, f:true, img:"https://cdn.myshoptet.com/usr/www.najodecor.cz/user/shop/big/169_konferencni-stolek-arttwo--hrana-desky-rovna--odstin-desky-tmavy-transparentni--velikost-90-.jpg?695e7101", slug:"konferencni-stolek-arttwo", hasDetail:true},
+  {n:"Konferenční stolek Král Severu", c:"coffee", p:10728, f:true, img:"https://cdn.myshoptet.com/usr/www.najodecor.cz/user/shop/big/0f704260-6c5f-41b6-8178-66741015dceb.jpg?695e70ef", slug:"konferencni-stolek-kral-severu", hasDetail:true},
+  {n:"Konferenční stolek Dubosaurus", c:"coffee", p:12542, f:true, img:"https://cdn.myshoptet.com/usr/www.najodecor.cz/user/shop/big/84-3_konferencni-stolek-dubosaurus--hrana-desky-prirodni--odstin-desky-tmavy-transparentni--velikost-130-x-70-.jpg?695e70ff", slug:"konferencni-stolek-dubosaurus", hasDetail:true},
+  {n:"Konferenční stolek Duble", c:"coffee", p:10728, f:true, img:"https://cdn.myshoptet.com/usr/www.najodecor.cz/user/shop/big/135_51b6582c-336f-4f11-8d5a-0d2e70eb5af0.jpg?695e70ff", slug:"konferencni-stolek-duble", hasDetail:true},
+  {n:"Konferenční stolek Kulaťák", c:"coffee", p:8930, f:true, img:"https://cdn.myshoptet.com/usr/www.najodecor.cz/user/shop/big/102-4_konferencni-stolek-kulatak--hrana-desky-rovna--odstin-desky-tmavy-transparentni--velikost-120-.jpg?695e70fd", slug:"konferencni-stolek-kulatak", hasDetail:true},
+  {n:"Konferenční stolek Artuš", c:"coffee", p:10690, f:true, img:"https://cdn.myshoptet.com/usr/www.najodecor.cz/user/shop/big/99-1_7ff30915-61cc-484b-aeb2-41b639713f8f--1.jpg?695e70fc", slug:"konferencni-stolek-artus", hasDetail:true},
+  {n:"Konferenční stolek Dřevák", c:"coffee", p:11820, f:true, img:"https://cdn.myshoptet.com/usr/www.najodecor.cz/user/shop/big/96_konferencni-stolek-drevak--hrana-desky-prirodni--odstin-desky-tmavy-transparentni--velikost-130-x-70-.jpg?695e70fc", slug:"konferencni-stolek-drevak", hasDetail:true},
+  {n:"Konferenční stolek Džimbo", c:"coffee", p:10728, f:true, img:"https://cdn.myshoptet.com/usr/www.najodecor.cz/user/shop/big/93-4_39b7b94d-1148-47e7-91ce-ee73ed95e224.jpg?695e70fc", slug:"konferencni-stolek-dzimbo", hasDetail:true},
+  {n:"Konferenční stolek Topství", c:"coffee", p:12542, f:true, img:"https://cdn.myshoptet.com/usr/www.najodecor.cz/user/shop/big/81-3_konferencni-stolek-topstvi--hrana-desky-prirodni--odstin-desky-tmavy-transparentni--velikost-130-x-70-.jpg?695e70fa", slug:"konferencni-stolek-topstvi", hasDetail:true},
+  {n:"Konferenční stolek Double Duble", c:"coffee", p:12542, f:true, img:"https://cdn.myshoptet.com/usr/www.najodecor.cz/user/shop/big/78-3_konferencni-stolek-double-duble--hrana-desky-prirodni--odstin-desky-tmavy-transparentni--velikost-130-x-70-.jpg?695e70fa", slug:"konferencni-stolek-double-duble", hasDetail:true},
+  {n:"Jídelní stůl Maximus - do délky 4 METRŮ", c:"dining", p:16913, f:true, img:"https://cdn.myshoptet.com/usr/www.najodecor.cz/user/shop/big/259-19_jidelni-stul-maximus-do-delky-4-metru--hrana-desky-rovna--odstin-desky-tmavy-transparentni--velikost-400-x-100-.jpg?695e7111", slug:"jidelni-stul-maximus-do-delky-4-metru-2", hasDetail:true},
+  {n:"Jídelní stůl Beskydos", c:"dining", p:20477, f:true, img:"https://cdn.myshoptet.com/usr/www.najodecor.cz/user/shop/big/256_jidelni-stul-beskydos--hrana-desky-rovna--odstin-desky-tmavy-transparentni--velikost-260-x-100-.jpg?695e710f", slug:"jidelni-stul-beskydos-2", hasDetail:true},
+  {n:"Jídelní stůl Spider", c:"dining", p:19071, f:true, img:"https://cdn.myshoptet.com/usr/www.najodecor.cz/user/shop/big/75-1_e1243065-dcb0-424f-86fb-39bb46593990.jpg?695e70f9", slug:"jidelni-stul-spider", hasDetail:true},
+  {n:"Jídelní stůl Klasik", c:"dining", p:16913, f:true, img:"https://cdn.myshoptet.com/usr/www.najodecor.cz/user/shop/big/60-5_f1b0f3c9-8f92-4c2a-8678-e6eed044c513.jpg?695e70f4", slug:"jidelni-stul-klasik", hasDetail:true},
+  {n:"Jídelní stůl Dubleone", c:"dining", p:16913, f:true, img:"https://cdn.myshoptet.com/usr/www.najodecor.cz/user/shop/big/57-7_jidelni-stul-dubleone--hrana-desky-prirodni--odstin-desky-tmavy-transparentni--velikost-160-x-90-.jpg?695e70f2", slug:"jidelni-stul-dubleone", hasDetail:true},
+  {n:"Jídelní stůl Džimbo", c:"dining", p:16913, f:true, img:"https://cdn.myshoptet.com/usr/www.najodecor.cz/user/shop/big/54-1_5f66f685-eaa1-4b3a-b469-729ed9351c83-3.jpg?695e70f1", slug:"jidelni-stul-dzimbo", hasDetail:true},
+  {n:"Jídelní stůl Valdo", c:"dining", p:20477, f:true, img:"https://cdn.myshoptet.com/usr/www.najodecor.cz/user/shop/big/503-5_jidelni-stul-valdo.jpg?69725ab2", slug:"jidelni-stul-valdo", hasDetail:true},
+  {n:"Jídelní stůl Xander", c:"dining", p:18514, f:true, img:"https://cdn.myshoptet.com/usr/www.najodecor.cz/user/shop/big/298-7_01935a05-8452-404c-b084-d58f76bbe490.jpg?695e7113", slug:"jidelni-stul-xander", hasDetail:true},
+  {n:"Jídelní stůl Hercules", c:"dining", p:34328, f:true, img:"https://cdn.myshoptet.com/usr/www.najodecor.cz/user/shop/big/232_7ecad9aa-95c2-4f63-8f77-b574318272d3.jpg?695e7105", slug:"jidelni-stul-hercules", hasDetail:true},
+  {n:"Jídelní stůl Dřevák", c:"dining", p:17922, f:true, img:"https://cdn.myshoptet.com/usr/www.najodecor.cz/user/shop/big/72-11_jidelni-stul-drevak--hrana-desky-prirodni--odstin-desky-tmavy-transparentni--velikost-160-x-90-.jpg?695e70f9", slug:"jidelni-stul-drevak", hasDetail:true},
+  {n:"Jídelní stůl The Fošna", c:"dining", p:17922, f:true, img:"https://cdn.myshoptet.com/usr/www.najodecor.cz/user/shop/big/69-3_6c650232-9f00-4b1c-a2a0-591ff3a3a856.jpg?695e70f7", slug:"jidelni-stul-the-fosna", hasDetail:true},
+  {n:"Jídelní stůl Happy Hippo", c:"dining", p:22131, f:true, img:"https://cdn.myshoptet.com/usr/www.najodecor.cz/user/shop/big/66-1_7f4f75f2-c108-4126-a5a8-8760702de7d0-2.jpg?695e70f6", slug:"jidelni-stul-happy-hippo", hasDetail:true},
+  {n:"Jídelní stůl Král Severu", c:"dining", p:16913, f:true, img:"https://cdn.myshoptet.com/usr/www.najodecor.cz/user/shop/big/51-15_0f704260-6c5f-41b6-8178-66741015dceb.jpg?695e70ef", slug:"jidelni-stul-kral-severu", hasDetail:true},
+  {n:"Jídelní stůl Legendary", c:"dining", p:18514, f:true, img:"https://cdn.myshoptet.com/usr/www.najodecor.cz/user/shop/big/48_jidelni-stul-legendary--hrana-desky-prirodni--odstin-desky-tmavy-transparentni--velikost-160-x-90-.jpg?695e70ed", slug:"jidelni-stul-legendary", hasDetail:true},
+  {n:"KOMODA - Don Komodor", c:"tv", p:31260, f:true, img:"https://cdn.myshoptet.com/usr/www.najodecor.cz/user/shop/big/271_komoda.jpg?695e7112", slug:"don-komodor", hasDetail:true},
+  {n:"Stolek pod TV Trámosaurus", c:"tv", p:14658, f:true, img:"https://cdn.myshoptet.com/usr/www.najodecor.cz/user/shop/big/108_stolek-pod-tv-tramosaurus--odstin-desky-tmavy-transparentni--velikost-190-.jpg?695e70fe", slug:"stolek-pod-tv-tramosaurus", hasDetail:true},
+  {n:"Skříň pod TV Pandur", c:"tv", p:23898, f:true, img:"https://cdn.myshoptet.com/usr/www.najodecor.cz/user/shop/big/530-7_skrin-pod-tv-pandora--odstin-desky-tmavy-transparentni--velikost-160-.jpg?69f06f78", slug:"skrin-pod-tv-panur", hasDetail:true},
+  {n:"Skříň pod TV Pandora", c:"tv", p:23898, f:true, img:"https://cdn.myshoptet.com/usr/www.najodecor.cz/user/shop/big/178_91bf71eb-b418-436a-9ed7-7bc55f5d3ead.jpg?695e7103", slug:"skrin-pod-tv-pandora", hasDetail:true},
+  {n:"Dubová deska", c:"tv", p:2816, f:true, img:"https://cdn.myshoptet.com/usr/www.najodecor.cz/user/shop/big/172-3_dubova-deska--hrana-desky-prirodni--odstin-desky-tmavy-transparentni--velikost-100-.jpg?695e7103", slug:"dubova-deska", hasDetail:true},
+  {n:"Stolek pod TV Dubinátor", c:"tv", p:14658, f:true, img:"https://cdn.myshoptet.com/usr/www.najodecor.cz/user/shop/big/105_aa4ff22f-d1bb-462b-9aec-9a8ce4a6c2f0-6.jpg?695e70fd", slug:"stolek-pod-tv-dubinator", hasDetail:true},
+  {n:"Police Dubice", c:"shelving", p:1534, f:true, img:"https://cdn.myshoptet.com/usr/www.najodecor.cz/user/shop/big/114_police-dubice--hrana-desky-prirodni--odstin-desky-tmavy-transparentni--velikost-140-.jpg?695e70ff", slug:"police-dubice", hasDetail:true},
+  {n:"Regál Redžinald", c:"shelving", p:15582, f:true, img:"https://www.najodecor.cz/user/categories/orig/748bd29b-6f83-4d3a-b660-fb6455307918.jpg", slug:"regal-redzinald", hasDetail:true},
+  {n:"Postel Mareček", c:"kids", p:11650, f:true, img:"https://cdn.myshoptet.com/usr/www.najodecor.cz/user/shop/big/265_postel-marecek_1_.jpg?695e7112", slug:"postel-marecek", hasDetail:true},
+  {n:"Patrová postel Viktor", c:"kids", p:25400, f:true, img:"https://cdn.myshoptet.com/usr/www.najodecor.cz/user/shop/big/268_patrova-postel-viktor--velikost-90--200--zabrana-s-predni-zabranou--ulozny-prostor-bez-ulozneho-prostoru.jpg?695e7112", slug:"patrova-postel-viktor", hasDetail:true},
+  {n:"Lavice - Král východu", c:"benches", p:3789, f:true, img:"https://cdn.myshoptet.com/usr/www.najodecor.cz/user/shop/big/244-1_b18da582-2c53-466b-aab4-ee73beb74611.jpg?695e7108", slug:"lavice-kral-vychodu", hasDetail:true},
+  {n:"Lavice s opěradlem", c:"benches", p:7642, f:true, img:"https://cdn.myshoptet.com/usr/www.najodecor.cz/user/shop/big/506_lavice-s-operadlem.jpg?69725e0c", slug:"lavice-s-operadlem", hasDetail:true},
+  {n:"Lavice - Kolmice", c:"benches", p:6062, f:true, img:"https://cdn.myshoptet.com/usr/www.najodecor.cz/user/shop/big/253_lavice-kolmice--hrana-desky-rovna--odstin-desky-tmavy-transparentni--velikost-90-.jpg?695e710d", slug:"lavice-kolmice-2", hasDetail:true},
+  {n:"Lavice - Kostka", c:"benches", p:3789, f:true, img:"https://cdn.myshoptet.com/usr/www.najodecor.cz/user/shop/big/250_lavice-kostka--hrana-desky-rovna--odstin-desky-tmavy-transparentni--velikost-90-.jpg?695e710c", slug:"lavice-kostka", hasDetail:true},
+  {n:"Lavice - Dřevák", c:"benches", p:6942, f:true, img:"https://cdn.myshoptet.com/usr/www.najodecor.cz/user/shop/big/247_95e9d586-c671-4238-9cdc-0eb28909e229.png?695e710a", slug:"lavice-drevak-2", hasDetail:true},
+  {n:"Lavice - happyhippo", c:"benches", p:6942, f:true, img:"https://cdn.myshoptet.com/usr/www.najodecor.cz/user/shop/big/241_8ea89d5e-2eae-4031-b5b6-dc08dab23f99.jpg?695e7106", slug:"lavice-happyhippo", hasDetail:true},
+  {n:"Židle Elegance COMFORT dubová", c:"chairs", p:4400, f:false, img:"https://cdn.myshoptet.com/usr/www.najodecor.cz/user/shop/big/466_elegance-comfort.png?695e7113", slug:"zidle-elegance-comfort", hasDetail:false},
+  {n:"Dubová židle Victoria", c:"chairs", p:3150, f:false, img:"https://cdn.myshoptet.com/usr/www.najodecor.cz/user/shop/detail/478_victoria1.png?695e7113", slug:"dubova-zidle-victoria", hasDetail:false},
+  {n:"Barová židle přírodní dub 72cm", c:"chairs", p:4455, f:false, img:"https://cdn.myshoptet.com/usr/www.najodecor.cz/user/shop/big/475_barova-zidle-72.png?695e7113", slug:"barova-zidle-prirodni-dub-72cm", hasDetail:false},
+  {n:"Barová židle přírodní dub 63cm", c:"chairs", p:4455, f:false, img:"https://cdn.myshoptet.com/usr/www.najodecor.cz/user/shop/detail/472_barova-zidle.png?695e7113", slug:"barova-zidle-prirodni-dub-63cm", hasDetail:false},
+  {n:"Židle Elegance Style Dubová", c:"chairs", p:4190, f:false, img:"https://cdn.myshoptet.com/usr/www.najodecor.cz/user/shop/big/469_elegance-style1.jpg?695e7113", slug:"zidle-elegance-style-dubova", hasDetail:false},
+  {n:"Židle Elegance Dubová XL rustik", c:"chairs", p:4356, f:false, img:"https://cdn.myshoptet.com/usr/www.najodecor.cz/user/shop/big/463_zidle-elegance-xl-rustik.jpg?695e7113", slug:"zidle-elegance-dubova-xl-rustik", hasDetail:false},
+  {n:"Židle Elegance dubová", c:"chairs", p:3800, f:false, img:"https://cdn.myshoptet.com/usr/www.najodecor.cz/user/shop/big/460-2_elegance.png?695e7113", slug:"zidle-elegance", hasDetail:false},
+  {n:"Židle duběnka", c:"chairs", p:3959, f:false, img:"https://cdn.myshoptet.com/usr/www.najodecor.cz/user/shop/big/238_0bb18e4b-5fbd-4626-967f-716d2a8cc667.png?695e7105", slug:"zidle-dubenka", hasDetail:false},
+  {n:"Barová židle BarBar", c:"chairs", p:4258, f:true, img:"https://cdn.myshoptet.com/usr/www.najodecor.cz/user/shop/big/138-2_be354003-9b56-479e-bcb6-8b21153403b5.jpg?695e70ff", slug:"barova-zidle", hasDetail:false},
+  {n:"Odkládací stolek (židlička) Dubkoun", c:"side", p:2170, f:false, img:"https://cdn.myshoptet.com/usr/www.najodecor.cz/user/shop/detail/129-3_odkladaci-stolek--zidlicka-dubkoun--odstin-desky-tmavy-transparentni-.jpg?695e70ff", slug:"odkladaci-stolek-dubkoun", hasDetail:true},
+  {n:"Dubová kostka", c:"side", p:2762, f:false, img:"https://cdn.myshoptet.com/usr/www.najodecor.cz/user/shop/big/150_8d9f7173-b24e-48a4-8c94-323f66887126.jpg?695e7100", slug:"dubova-kostka", hasDetail:true},
+  {n:"Odkládací hrací stoleček (více her)", c:"side", p:3594, f:false, img:"https://cdn.myshoptet.com/usr/www.najodecor.cz/user/shop/big/164_bd702fef-62c4-4f66-b6f9-adab438c78ad.jpg?695e7100", slug:"odkladaci-stolek-sachovnice", hasDetail:true},
+  {n:"Odnímatelný kryt na radiátor z masivu", c:"radiator", p:6441, f:true, img:"https://cdn.myshoptet.com/usr/www.najodecor.cz/user/shop/big/484-8_odnimatelny-kryt-na-radiator-z-masivu--delka-190-cm--vyska-80-cm--sirka-15-cm.jpg?695e7116", slug:"odnimatelny-kryt-na-radiator-z-dubu", hasDetail:true},
+  {n:"Koupelník", c:"bathroom", p:10037, f:true, img:"https://cdn.myshoptet.com/usr/www.najodecor.cz/user/shop/big/166-1_bd9cfb53-729c-4bcd-bce0-4191654252d5.jpg?695e7101", slug:"koupelnik", hasDetail:true},
+  {n:"Stojánek na misky", c:"pets", p:1874, f:true, img:"https://cdn.myshoptet.com/usr/www.najodecor.cz/user/shop/big/481_stojanek-na-misky--barva-podnozi-cerna--misky-dvojmiskova--odstin-desky-tmavy-transparentni-.jpg?695e7114", slug:"stojanek-na-misky", hasDetail:true},
+  {n:"Podnož - MAXIMUS (2ks)", c:"legs", p:4700, f:false, img:"https://cdn.myshoptet.com/usr/www.najodecor.cz/user/shop/big/499_podnoz-maximus.jpg?695e7116", slug:"podnoz-maximus", hasDetail:true},
+  {n:"Podnož - SPIDER", c:"legs", p:5530, f:false, img:"https://cdn.myshoptet.com/usr/www.najodecor.cz/user/shop/detail/496-2_podnoz-spider-iii.jpg?695e7116", slug:"podnoz-spider", hasDetail:true},
+  {n:"Podnož - BESKYDOS", c:"legs", p:5799, f:false, img:"https://cdn.myshoptet.com/usr/www.najodecor.cz/user/shop/big/493_podnoz-beskydos.jpg?695e7116", slug:"podnoz-beskydos", hasDetail:true}
+];
+
+const PRODUCT_DETAILS = {
+"konferencni-stolek-beskydos-2": {
+"photos": [
+"https://cdn.myshoptet.com/usr/www.najodecor.cz/user/shop/big/147_f38c2aa3-db17-4686-a28d-75c772065669.png?695e7100",
+"https://cdn.myshoptet.com/usr/www.najodecor.cz/user/shop/big/147-1_5ec92f8f-ecff-4959-a8fc-5141c3e2048d.jpg?695e7100",
+"https://cdn.myshoptet.com/usr/www.najodecor.cz/user/shop/big/147-2_dc36ef64-c0ec-44a4-9382-0c0c67829731.jpg?695e7100",
+"https://cdn.myshoptet.com/usr/www.najodecor.cz/user/shop/big/147_d45d78c7-79ab-465f-89b2-0cf0b2c73a8e.jpg?695e7100",
+"https://cdn.myshoptet.com/usr/www.najodecor.cz/user/shop/big/147-3_162e5f89-677a-4e03-953e-c28f0a6684d0.jpg?695e7100",
+"https://cdn.myshoptet.com/usr/www.najodecor.cz/user/shop/big/147-4_dffa6cd7-d963-4144-ac8b-5290859b01c8.jpg?695e7100",
+"https://cdn.myshoptet.com/usr/www.najodecor.cz/user/shop/big/147-5_8dd51cc6-1ae7-48cb-8773-f36cfba21b56.jpg?695e7100",
+"https://cdn.myshoptet.com/usr/www.najodecor.cz/user/shop/big/147-6_a276be83-1b51-40f0-9920-554aeb0da756.jpg?695e7100"
+],
+"desc": "Konferenční stolek z masivního dubu a oceli. Deska je 4 cm silná, hrana na výběr přírodní nebo rovná, podnoží v matné černé nebo bílé.",
+"edge": true,
+"shade": true,
+"frame": false,
+"catLabel": "Coffee Table"
+},
+"konferencni-stolek-el-klasiko": {
+"photos": [
+"https://cdn.myshoptet.com/usr/www.najodecor.cz/user/shop/big/87-2_konferencni-stolek-el-klasiko--hrana-desky-prirodni--odstin-desky-tmavy-transparentni--velikost-130-x-70-.jpg?695e70fb"
+],
+"desc": "Konferenční stolek El Klasiko. Pokud nenaleznete rozměr, který by Vám vyhovoval, stačí nám napsat a stolek vyrobíme dle Vašeho požadavku.",
+"edge": true,
+"shade": true,
+"frame": false,
+"catLabel": "Coffee Table"
+},
+"konferencni-stolek-arttwo": {
+"photos": [
+"https://cdn.myshoptet.com/usr/www.najodecor.cz/user/shop/big/169_konferencni-stolek-arttwo--hrana-desky-rovna--odstin-desky-tmavy-transparentni--velikost-90-.jpg?695e7101"
+],
+"desc": "Konferenční stolek ArtTwo z masivního dubu s rovnou hranou desky.",
+"edge": true,
+"shade": true,
+"frame": false,
+"catLabel": "Coffee Table"
+},
+"konferencni-stolek-kral-severu": {
+"photos": [
+"https://cdn.myshoptet.com/usr/www.najodecor.cz/user/shop/big/0f704260-6c5f-41b6-8178-66741015dceb.jpg?695e70ef"
+],
+"desc": "Konferenční stolek Král Severu. Pokud nenaleznete rozměr, který by Vám vyhovoval, stačí nám napsat a stolek vyrobíme dle Vašeho požadavku.",
+"edge": true,
+"shade": true,
+"frame": false,
+"catLabel": "Coffee Table"
+},
+"konferencni-stolek-dubosaurus": {
+"photos": [
+"https://cdn.myshoptet.com/usr/www.najodecor.cz/user/shop/big/84-3_konferencni-stolek-dubosaurus--hrana-desky-prirodni--odstin-desky-tmavy-transparentni--velikost-130-x-70-.jpg?695e70ff"
+],
+"desc": "Konferenční stolek Dubosaurus. Pokud nenaleznete rozměr, který by Vám vyhovoval, stačí nám napsat a stolek vyrobíme dle Vašeho požadavku.",
+"edge": true,
+"shade": true,
+"frame": false,
+"catLabel": "Coffee Table"
+},
+"konferencni-stolek-duble": {
+"photos": [
+"https://cdn.myshoptet.com/usr/www.najodecor.cz/user/shop/big/135_51b6582c-336f-4f11-8d5a-0d2e70eb5af0.jpg?695e70ff"
+],
+"desc": "Konferenční stolek Duble z masivního dubu, vyrobený v dílně Najodecor v Beskydech.",
+"edge": true,
+"shade": true,
+"frame": false,
+"catLabel": "Coffee Table"
+},
+"konferencni-stolek-kulatak": {
+"photos": [
+"https://cdn.myshoptet.com/usr/www.najodecor.cz/user/shop/big/102-4_konferencni-stolek-kulatak--hrana-desky-rovna--odstin-desky-tmavy-transparentni--velikost-120-.jpg?695e70fd"
+],
+"desc": "Konferenční stolek Kulaťák — kulatá deska z masivního dubu s rovnou hranou.",
+"edge": true,
+"shade": true,
+"frame": false,
+"catLabel": "Coffee Table"
+},
+"konferencni-stolek-artus": {
+"photos": [
+"https://cdn.myshoptet.com/usr/www.najodecor.cz/user/shop/big/99-1_7ff30915-61cc-484b-aeb2-41b639713f8f--1.jpg?695e70fc"
+],
+"desc": "Konferenční stolek Artuš z masivního dubu a oceli.",
+"edge": true,
+"shade": true,
+"frame": false,
+"catLabel": "Coffee Table"
+},
+"konferencni-stolek-drevak": {
+"photos": [
+"https://cdn.myshoptet.com/usr/www.najodecor.cz/user/shop/big/96_konferencni-stolek-drevak--hrana-desky-prirodni--odstin-desky-tmavy-transparentni--velikost-130-x-70-.jpg?695e70fc"
+],
+"desc": "Konferenční stolek Dřevák. Pokud nenaleznete rozměr, který by Vám vyhovoval, stačí nám napsat a stolek vyrobíme dle Vašeho požadavku.",
+"edge": true,
+"shade": true,
+"frame": false,
+"catLabel": "Coffee Table"
+},
+"konferencni-stolek-dzimbo": {
+"photos": [
+"https://cdn.myshoptet.com/usr/www.najodecor.cz/user/shop/big/93-4_39b7b94d-1148-47e7-91ce-ee73ed95e224.jpg?695e70fc"
+],
+"desc": "Konferenční stolek Džimbo z masivního dubu.",
+"edge": true,
+"shade": true,
+"frame": false,
+"catLabel": "Coffee Table"
+},
+"konferencni-stolek-topstvi": {
+"photos": [
+"https://cdn.myshoptet.com/usr/www.najodecor.cz/user/shop/big/81-3_konferencni-stolek-topstvi--hrana-desky-prirodni--odstin-desky-tmavy-transparentni--velikost-130-x-70-.jpg?695e70fa"
+],
+"desc": "Konferenční stolek Topství. Pokud nenaleznete rozměr, který by Vám vyhovoval, stačí nám napsat a stolek vyrobíme dle Vašeho požadavku.",
+"edge": true,
+"shade": true,
+"frame": false,
+"catLabel": "Coffee Table"
+},
+"konferencni-stolek-double-duble": {
+"photos": [
+"https://cdn.myshoptet.com/usr/www.najodecor.cz/user/shop/big/78-3_konferencni-stolek-double-duble--hrana-desky-prirodni--odstin-desky-tmavy-transparentni--velikost-130-x-70-.jpg?695e70fa"
+],
+"desc": "Konferenční stolek Double Duble z masivního dubu.",
+"edge": true,
+"shade": true,
+"frame": false,
+"catLabel": "Coffee Table"
+},
+"jidelni-stul-maximus-do-delky-4-metru-2": {
+"photos": [
+"https://cdn.myshoptet.com/usr/www.najodecor.cz/user/shop/big/259-19_jidelni-stul-maximus-do-delky-4-metru--hrana-desky-rovna--odstin-desky-tmavy-transparentni--velikost-400-x-100-.jpg?695e7111"
+],
+"desc": "Jídelní stůl Maximus — vyrábíme masivní jídelní stoly na míru až do délky 4 metry.",
+"edge": true,
+"shade": true,
+"frame": false,
+"catLabel": "Dining Table"
+},
+"jidelni-stul-beskydos-2": {
+"photos": [
+"https://cdn.myshoptet.com/usr/www.najodecor.cz/user/shop/big/256_jidelni-stul-beskydos--hrana-desky-rovna--odstin-desky-tmavy-transparentni--velikost-260-x-100-.jpg?695e710f"
+],
+"desc": "Jídelní stůl Beskydos z masivního dubu a oceli, náš bestseller.",
+"edge": true,
+"shade": true,
+"frame": false,
+"catLabel": "Dining Table"
+},
+"jidelni-stul-spider": {
+"photos": [
+"https://cdn.myshoptet.com/usr/www.najodecor.cz/user/shop/big/75-1_e1243065-dcb0-424f-86fb-39bb46593990.jpg?695e70f9"
+],
+"desc": "Jídelní stůl Spider s charakteristickým křížovým ocelovým podnožím.",
+"edge": true,
+"shade": true,
+"frame": false,
+"catLabel": "Dining Table"
+},
+"jidelni-stul-klasik": {
+"photos": [
+"https://cdn.myshoptet.com/usr/www.najodecor.cz/user/shop/big/60-5_f1b0f3c9-8f92-4c2a-8678-e6eed044c513.jpg?695e70f4"
+],
+"desc": "Jídelní stůl Klasik z masivního dubu.",
+"edge": true,
+"shade": true,
+"frame": false,
+"catLabel": "Dining Table"
+},
+"jidelni-stul-dubleone": {
+"photos": [
+"https://cdn.myshoptet.com/usr/www.najodecor.cz/user/shop/big/57-7_jidelni-stul-dubleone--hrana-desky-prirodni--odstin-desky-tmavy-transparentni--velikost-160-x-90-.jpg?695e70f2"
+],
+"desc": "Jídelní stůl Dubleone. Pokud nenaleznete rozměr, který by Vám vyhovoval, stačí nám napsat a stůl vyrobíme dle Vašeho požadavku.",
+"edge": true,
+"shade": true,
+"frame": false,
+"catLabel": "Dining Table"
+},
+"jidelni-stul-dzimbo": {
+"photos": [
+"https://cdn.myshoptet.com/usr/www.najodecor.cz/user/shop/big/54-1_5f66f685-eaa1-4b3a-b469-729ed9351c83-3.jpg?695e70f1"
+],
+"desc": "Jídelní stůl Džimbo z masivního dubu.",
+"edge": true,
+"shade": true,
+"frame": false,
+"catLabel": "Dining Table"
+},
+"jidelni-stul-valdo": {
+"photos": [
+"https://cdn.myshoptet.com/usr/www.najodecor.cz/user/shop/big/503-5_jidelni-stul-valdo.jpg?69725ab2"
+],
+"desc": "Jídelní stůl Valdo. Pokud nenaleznete rozměr, který by Vám vyhovoval, stačí nám napsat a stůl vyrobíme dle Vašeho požadavku.",
+"edge": true,
+"shade": true,
+"frame": false,
+"catLabel": "Dining Table"
+},
+"jidelni-stul-xander": {
+"photos": [
+"https://cdn.myshoptet.com/usr/www.najodecor.cz/user/shop/big/298-7_01935a05-8452-404c-b084-d58f76bbe490.jpg?695e7113"
+],
+"desc": "Jídelní stůl Xander z masivního dubu.",
+"edge": true,
+"shade": true,
+"frame": false,
+"catLabel": "Dining Table"
+},
+"jidelni-stul-hercules": {
+"photos": [
+"https://cdn.myshoptet.com/usr/www.najodecor.cz/user/shop/big/232_7ecad9aa-95c2-4f63-8f77-b574318272d3.jpg?695e7105"
+],
+"desc": "Jídelní stůl Hercules. Pokud nenaleznete rozměr nebo odstín, který by Vám vyhovoval, stačí nám napsat a stůl vyrobíme dle Vašeho požadavku.",
+"edge": true,
+"shade": true,
+"frame": false,
+"catLabel": "Dining Table"
+},
+"jidelni-stul-drevak": {
+"photos": [
+"https://cdn.myshoptet.com/usr/www.najodecor.cz/user/shop/big/72-11_jidelni-stul-drevak--hrana-desky-prirodni--odstin-desky-tmavy-transparentni--velikost-160-x-90-.jpg?695e70f9"
+],
+"desc": "Jídelní stůl Dřevák z masivního dubu.",
+"edge": true,
+"shade": true,
+"frame": false,
+"catLabel": "Dining Table"
+},
+"jidelni-stul-the-fosna": {
+"photos": [
+"https://cdn.myshoptet.com/usr/www.najodecor.cz/user/shop/big/69-3_6c650232-9f00-4b1c-a2a0-591ff3a3a856.jpg?695e70f7"
+],
+"desc": "Jídelní stůl The Fošna. Pokud nenaleznete rozměr, který by Vám vyhovoval, stačí nám napsat a stůl vyrobíme dle Vašeho požadavku.",
+"edge": true,
+"shade": true,
+"frame": false,
+"catLabel": "Dining Table"
+},
+"jidelni-stul-happy-hippo": {
+"photos": [
+"https://cdn.myshoptet.com/usr/www.najodecor.cz/user/shop/big/66-1_7f4f75f2-c108-4126-a5a8-8760702de7d0-2.jpg?695e70f6"
+],
+"desc": "Jídelní stůl Happy Hippo z masivního dubu.",
+"edge": true,
+"shade": true,
+"frame": false,
+"catLabel": "Dining Table"
+},
+"jidelni-stul-kral-severu": {
+"photos": [
+"https://cdn.myshoptet.com/usr/www.najodecor.cz/user/shop/big/51-15_0f704260-6c5f-41b6-8178-66741015dceb.jpg?695e70ef"
+],
+"desc": "Jídelní stůl Král Severu. Pokud nenaleznete rozměr, který by Vám vyhovoval, stačí nám napsat a stůl vyrobíme dle Vašeho požadavku.",
+"edge": true,
+"shade": true,
+"frame": false,
+"catLabel": "Dining Table"
+},
+"jidelni-stul-legendary": {
+"photos": [
+"https://cdn.myshoptet.com/usr/www.najodecor.cz/user/shop/big/48_jidelni-stul-legendary--hrana-desky-prirodni--odstin-desky-tmavy-transparentni--velikost-160-x-90-.jpg?695e70ed"
+],
+"desc": "Jídelní stůl Legendary z masivního dubu.",
+"edge": true,
+"shade": true,
+"frame": false,
+"catLabel": "Dining Table"
+},
+"don-komodor": {
+"photos": [
+"https://cdn.myshoptet.com/usr/www.najodecor.cz/user/shop/big/271_komoda.jpg?695e7112",
+"https://cdn.myshoptet.com/usr/www.najodecor.cz/user/shop/big/271-1_komoda-don-komodor--odstin-desky-tmavy-transparentni--velikost-100x100x45-.jpg?695e7112",
+"https://cdn.myshoptet.com/usr/www.najodecor.cz/user/shop/big/271-3_komoda-don-komodor--odstin-desky-tmavy-transparentni--velikost-100x100x45-.jpg?695e7112",
+"https://cdn.myshoptet.com/usr/www.najodecor.cz/user/shop/big/271-5_komoda-iii.jpg?695e7112",
+"https://cdn.myshoptet.com/usr/www.najodecor.cz/user/shop/big/271-6_komoda-don-komodor--odstin-desky-tmavy-transparentni--velikost-100x100x45-.jpg?695e7112",
+"https://cdn.myshoptet.com/usr/www.najodecor.cz/user/shop/big/271-7_accc26ab-9253-4373-ace4-5648c58d930b.jpg?695e7112",
+"https://cdn.myshoptet.com/usr/www.najodecor.cz/user/shop/big/271-9_f6abf85b-b9b5-4be4-8bce-76d9d265d788.jpg?695e7112",
+"https://cdn.myshoptet.com/usr/www.najodecor.cz/user/shop/big/271-8_komoda-don-komodor.jpg?69997e5a",
+"https://cdn.myshoptet.com/usr/www.najodecor.cz/user/shop/big/271-10_komoda-don-komodor.jpg?69997e68",
+"https://cdn.myshoptet.com/usr/www.najodecor.cz/user/shop/big/271-11_komoda-don-komodor.jpg?69997e6b"
+],
+"desc": "Masivní dubová komoda Don Komodor. Tři velikosti: 100×60×45, 100×80×45 a 100×100×45. Dva odstíny: tmavý a světlý. Úložný prostor v zásuvkách.",
+"edge": false,
+"shade": true,
+"frame": false,
+"catLabel": "TV Stand / Cabinet"
+},
+"stolek-pod-tv-tramosaurus": {
+"photos": [
+"https://cdn.myshoptet.com/usr/www.najodecor.cz/user/shop/big/108_stolek-pod-tv-tramosaurus--odstin-desky-tmavy-transparentni--velikost-190-.jpg?695e70fe",
+"https://cdn.myshoptet.com/usr/www.najodecor.cz/user/shop/big/108-1_stolek-pod-tv-tramosaurus--odstin-desky-tmavy-transparentni--velikost-190-.jpg?695e70fe",
+"https://cdn.myshoptet.com/usr/www.najodecor.cz/user/shop/big/108-2_stolek-pod-tv-tramosaurus--odstin-desky-tmavy-transparentni--velikost-190-.jpg?695e70fe",
+"https://cdn.myshoptet.com/usr/www.najodecor.cz/user/shop/big/108-3_stolek-pod-tv-tramosaurus--odstin-desky-tmavy-transparentni--velikost-190-.jpg?695e70fe",
+"https://cdn.myshoptet.com/usr/www.najodecor.cz/user/shop/big/108-4_stolek-pod-tv-tramosaurus--odstin-desky-tmavy-transparentni--velikost-190-.jpg?695e70fe",
+"https://cdn.myshoptet.com/usr/www.najodecor.cz/user/shop/big/108-5_stolek-pod-tv-tramosaurus--odstin-desky-tmavy-transparentni--velikost-190-.jpg?695e70fe",
+"https://cdn.myshoptet.com/usr/www.najodecor.cz/user/shop/big/108-6_ae51cbe4-05aa-41a6-8392-43773374c7b0.jpg?695e70fe",
+"https://cdn.myshoptet.com/usr/www.najodecor.cz/user/shop/big/108-7_3660e92f-9421-42f3-b4be-728dc1d59774.jpg?695e70fe",
+"https://cdn.myshoptet.com/usr/www.najodecor.cz/user/shop/big/108-8_f91e031b-7b78-4841-9836-780ee49c0cee.jpg?695e70fe"
+],
+"desc": "Stolek pod TV Trámosaurus z masivního dubu na ocelovém podnoží.",
+"edge": false,
+"shade": true,
+"frame": false,
+"catLabel": "TV Stand / Cabinet"
+},
+"skrin-pod-tv-panur": {
+"photos": [
+"https://cdn.myshoptet.com/usr/www.najodecor.cz/user/shop/big/530-7_skrin-pod-tv-pandora--odstin-desky-tmavy-transparentni--velikost-160-.jpg?69f06f78"
+],
+"desc": "Skříň pod TV Pandur. Pokud nenaleznete rozměr, který by Vám vyhovoval, stačí nám napsat a skříň vyrobíme dle Vašeho požadavku.",
+"edge": false,
+"shade": true,
+"frame": false,
+"catLabel": "TV Stand / Cabinet"
+},
+"skrin-pod-tv-pandora": {
+"photos": [
+"https://cdn.myshoptet.com/usr/www.najodecor.cz/user/shop/big/178_91bf71eb-b418-436a-9ed7-7bc55f5d3ead.jpg?695e7103"
+],
+"desc": "Skříň pod TV Pandora. Pokud nenaleznete rozměr, který by Vám vyhovoval, stačí nám napsat a skříň vyrobíme dle Vašeho požadavku.",
+"edge": false,
+"shade": true,
+"frame": false,
+"catLabel": "TV Stand / Cabinet"
+},
+"dubova-deska": {
+"photos": [
+"https://cdn.myshoptet.com/usr/www.najodecor.cz/user/shop/big/172-3_dubova-deska--hrana-desky-prirodni--odstin-desky-tmavy-transparentni--velikost-100-.jpg?695e7103"
+],
+"desc": "Dubová deska na Vaši starou skříňku dodá nový rozměr. Cena uvedena za šířku desky 40cm.",
+"edge": true,
+"shade": true,
+"frame": false,
+"catLabel": "TV Stand / Cabinet"
+},
+"stolek-pod-tv-dubinator": {
+"photos": [
+"https://cdn.myshoptet.com/usr/www.najodecor.cz/user/shop/big/105_aa4ff22f-d1bb-462b-9aec-9a8ce4a6c2f0-6.jpg?695e70fd"
+],
+"desc": "Stolek pod TV Dubinátor. Pokud nenaleznete rozměr, který by Vám vyhovoval, stačí nám napsat a stůl vyrobíme dle Vašeho požadavku.",
+"edge": false,
+"shade": true,
+"frame": false,
+"catLabel": "TV Stand / Cabinet"
+},
+"police-dubice": {
+"photos": [
+"https://cdn.myshoptet.com/usr/www.najodecor.cz/user/shop/big/114_police-dubice--hrana-desky-prirodni--odstin-desky-tmavy-transparentni--velikost-140-.jpg?695e70ff",
+"https://cdn.myshoptet.com/usr/www.najodecor.cz/user/shop/big/114-1_police-dubice--hrana-desky-prirodni--odstin-desky-tmavy-transparentni--velikost-140-.jpg?695e70ff",
+"https://cdn.myshoptet.com/usr/www.najodecor.cz/user/shop/big/114-2_police-dubice--hrana-desky-prirodni--odstin-desky-tmavy-transparentni--velikost-140-.jpg?695e70ff",
+"https://cdn.myshoptet.com/usr/www.najodecor.cz/user/shop/big/114-3_police-dubice--hrana-desky-prirodni--odstin-desky-tmavy-transparentni--velikost-140-.jpg?695e70ff",
+"https://cdn.myshoptet.com/usr/www.najodecor.cz/user/shop/big/114-4_police-dubice--hrana-desky-prirodni--odstin-desky-tmavy-transparentni--velikost-140-.jpg?695e70ff",
+"https://cdn.myshoptet.com/usr/www.najodecor.cz/user/shop/big/114-5_police-dubice--hrana-desky-prirodni--odstin-desky-tmavy-transparentni--velikost-140-.jpg?695e70ff",
+"https://cdn.myshoptet.com/usr/www.najodecor.cz/user/shop/big/114-6_police-dubice--hrana-desky-prirodni--odstin-desky-tmavy-transparentni--velikost-140-.jpg?695e70ff",
+"https://cdn.myshoptet.com/usr/www.najodecor.cz/user/shop/big/114-7_police-dubice--hrana-desky-prirodni--odstin-desky-tmavy-transparentni--velikost-140-.jpg?695e70ff",
+"https://cdn.myshoptet.com/usr/www.najodecor.cz/user/shop/big/114-8_police-dubice--hrana-desky-prirodni--odstin-desky-tmavy-transparentni--velikost-140-.jpg?695e70ff",
+"https://cdn.myshoptet.com/usr/www.najodecor.cz/user/shop/big/114-9_d434b35f-aeb3-443f-a0f7-2ba35b6d7620.jpg?697ddc4f",
+"https://cdn.myshoptet.com/usr/www.najodecor.cz/user/shop/big/114-10_5dc73ddc-cd2e-4e34-8ebb-cf36ed37ed73.jpg?697ddc4f",
+"https://cdn.myshoptet.com/usr/www.najodecor.cz/user/shop/big/114-11_9f636f0d-5a6f-426a-aa75-95c773b3d969.jpg?697ddc4f"
+],
+"desc": "Police Dubice z masivního dubu — základ pro výrobu kvalitního nábytku na míru.",
+"edge": true,
+"shade": true,
+"frame": false,
+"catLabel": "Shelving"
+},
+"regal-redzinald": {
+"photos": [
+"https://www.najodecor.cz/user/categories/orig/748bd29b-6f83-4d3a-b660-fb6455307918.jpg"
+],
+"desc": "Regál Redžinald z masivního dubu, kombinace police a konstrukce na míru.",
+"edge": true,
+"shade": true,
+"frame": false,
+"catLabel": "Shelving"
+},
+"postel-marecek": {
+"photos": [
+"https://cdn.myshoptet.com/usr/www.najodecor.cz/user/shop/big/265_postel-marecek_1_.jpg?695e7112"
+],
+"desc": "Postel Mareček. Naše postele jsou z bukového dřeva o tloušťce 4cm. Rošt je zdarma.",
+"edge": false,
+"shade": true,
+"frame": false,
+"catLabel": "Kids Bed"
+},
+"patrova-postel-viktor": {
+"photos": [
+"https://cdn.myshoptet.com/usr/www.najodecor.cz/user/shop/big/268_patrova-postel-viktor--velikost-90--200--zabrana-s-predni-zabranou--ulozny-prostor-bez-ulozneho-prostoru.jpg?695e7112"
+],
+"desc": "Patrová postel Viktor. Naše postele jsou z bukového dřeva o tloušťce 4cm. Rošt je zdarma.",
+"edge": false,
+"shade": true,
+"frame": false,
+"catLabel": "Kids Bed"
+},
+"lavice-kral-vychodu": {
+"photos": [
+"https://cdn.myshoptet.com/usr/www.najodecor.cz/user/shop/big/244-1_b18da582-2c53-466b-aab4-ee73beb74611.jpg?695e7108"
+],
+"desc": "Lavice Král východu z masivního dubu.",
+"edge": true,
+"shade": true,
+"frame": false,
+"catLabel": "Bench"
+},
+"lavice-s-operadlem": {
+"photos": [
+"https://cdn.myshoptet.com/usr/www.najodecor.cz/user/shop/big/506_lavice-s-operadlem.jpg?69725e0c"
+],
+"desc": "Lavice s opěradlem z masivního dubu.",
+"edge": true,
+"shade": true,
+"frame": false,
+"catLabel": "Bench"
+},
+"lavice-kolmice-2": {
+"photos": [
+"https://cdn.myshoptet.com/usr/www.najodecor.cz/user/shop/big/253_lavice-kolmice--hrana-desky-rovna--odstin-desky-tmavy-transparentni--velikost-90-.jpg?695e710d"
+],
+"desc": "Lavice Kolmice z masivního dubu s rovnou hranou desky.",
+"edge": true,
+"shade": true,
+"frame": false,
+"catLabel": "Bench"
+},
+"lavice-kostka": {
+"photos": [
+"https://cdn.myshoptet.com/usr/www.najodecor.cz/user/shop/big/250_lavice-kostka--hrana-desky-rovna--odstin-desky-tmavy-transparentni--velikost-90-.jpg?695e710c"
+],
+"desc": "Lavice Kostka z masivního dubu s rovnou hranou desky.",
+"edge": true,
+"shade": true,
+"frame": false,
+"catLabel": "Bench"
+},
+"lavice-drevak-2": {
+"photos": [
+"https://cdn.myshoptet.com/usr/www.najodecor.cz/user/shop/big/247_95e9d586-c671-4238-9cdc-0eb28909e229.png?695e710a"
+],
+"desc": "Lavice Dřevák z masivního dubu.",
+"edge": true,
+"shade": true,
+"frame": false,
+"catLabel": "Bench"
+},
+"lavice-happyhippo": {
+"photos": [
+"https://cdn.myshoptet.com/usr/www.najodecor.cz/user/shop/big/241_8ea89d5e-2eae-4031-b5b6-dc08dab23f99.jpg?695e7106"
+],
+"desc": "Lavice happyhippo z masivního dubu.",
+"edge": true,
+"shade": true,
+"frame": false,
+"catLabel": "Bench"
+},
+"odkladaci-stolek-dubkoun": {
+"photos": [
+"https://cdn.myshoptet.com/usr/www.najodecor.cz/user/shop/detail/129-3_odkladaci-stolek--zidlicka-dubkoun--odstin-desky-tmavy-transparentni-.jpg?695e70ff"
+],
+"desc": "Odkládací stolek (židlička) Dubkoun z masivního dubu, 35×35 cm, deska 4 cm silná, ocelové nohy.",
+"edge": false,
+"shade": true,
+"frame": false,
+"catLabel": "Side Table"
+},
+"dubova-kostka": {
+"photos": [
+"https://cdn.myshoptet.com/usr/www.najodecor.cz/user/shop/big/150_8d9f7173-b24e-48a4-8c94-323f66887126.jpg?695e7100"
+],
+"desc": "Dubová kostka z masivního dubu — praktický odkládací stolek do ložnice nebo obývacího pokoje.",
+"edge": false,
+"shade": true,
+"frame": false,
+"catLabel": "Side Table"
+},
+"odkladaci-stolek-sachovnice": {
+"photos": [
+"https://cdn.myshoptet.com/usr/www.najodecor.cz/user/shop/big/164_bd702fef-62c4-4f66-b6f9-adab438c78ad.jpg?695e7100"
+],
+"desc": "Odkládací hrací stoleček (více her) z masivního dubu — kombinuje praktický odkládací stolek s herní deskou.",
+"edge": false,
+"shade": true,
+"frame": false,
+"catLabel": "Side Table"
+},
+"odnimatelny-kryt-na-radiator-z-dubu": {
+"photos": [
+"https://cdn.myshoptet.com/usr/www.najodecor.cz/user/shop/big/484-8_odnimatelny-kryt-na-radiator-z-masivu--delka-190-cm--vyska-80-cm--sirka-15-cm.jpg?695e7116"
+],
+"desc": "Odnímatelný kryt na radiátor z masivního dřeva. Pokud potřebujete jiný rozměr, napište nám a zašleme cenovou nabídku.",
+"edge": false,
+"shade": true,
+"frame": false,
+"catLabel": "Radiator Cover"
+},
+"koupelnik": {
+"photos": [
+"https://cdn.myshoptet.com/usr/www.najodecor.cz/user/shop/big/166-1_bd9cfb53-729c-4bcd-bce0-4191654252d5.jpg?695e7101"
+],
+"desc": "Koupelník z masivního dubu — praktický doplněk do koupelny.",
+"edge": false,
+"shade": true,
+"frame": false,
+"catLabel": "Bathroom"
+},
+"stojanek-na-misky": {
+"photos": [
+"https://cdn.myshoptet.com/usr/www.najodecor.cz/user/shop/big/481_stojanek-na-misky--barva-podnozi-cerna--misky-dvojmiskova--odstin-desky-tmavy-transparentni-.jpg?695e7114"
+],
+"desc": "Stojánek na misky z masivního dubu a oceli — elegantní řešení pro krmení domácích mazlíčků.",
+"edge": false,
+"shade": true,
+"frame": true,
+"catLabel": "Pet Accessory"
+},
+"podnoz-maximus": {
+"photos": [
+"https://cdn.myshoptet.com/usr/www.najodecor.cz/user/shop/big/499_podnoz-maximus.jpg?695e7116"
+],
+"desc": "Podnož MAXIMUS (2ks). Cena je za pár. V základní nabídce nejžádanější provedení — matná černá a bílá. Na přání vyrobíme podnože v jakékoli barvě RAL.",
+"edge": false,
+"shade": false,
+"frame": true,
+"catLabel": "Table Legs"
+},
+"podnoz-spider": {
+"photos": [
+"https://cdn.myshoptet.com/usr/www.najodecor.cz/user/shop/detail/496-2_podnoz-spider-iii.jpg?695e7116"
+],
+"desc": "Podnož SPIDER — moderní ocelová podnož s charakteristickým křížovým designem.",
+"edge": false,
+"shade": false,
+"frame": true,
+"catLabel": "Table Legs"
+},
+"podnoz-beskydos": {
+"photos": [
+"https://cdn.myshoptet.com/usr/www.najodecor.cz/user/shop/big/493_podnoz-beskydos.jpg?695e7116"
+],
+"desc": "Podnož BESKYDOS — moderní ocelová podnož se zkříženým designem, plně svařeným spodkem a filcem proti poškrábání. Stabilní, pevná a vhodná pro všechny typy stolových desek.",
+"edge": false,
+"shade": false,
+"frame": true,
+"catLabel": "Table Legs"
+}
+};
+
+const CATALOG_CATEGORIES = ["all","coffee","dining","tv","shelving","kids","benches","chairs","side","radiator","bathroom","pets","legs"];
+let catalogState = { cat: "all", q: "" };
+
+function formatPrice(p, fromFlag) {
+  const t = translations[currentLang] || translations.en;
+  const numStr = p.toLocaleString('cs-CZ').replace(/,/g, ' ');
+  return fromFlag ? `${t["price.from"]} ${numStr} Kč` : `${numStr} Kč`;
+}
+
+function renderCategoryTabs() {
+  const t = translations[currentLang] || translations.en;
+  const wrap = document.getElementById('categoryTabs');
+  if (!wrap) return;
+  wrap.innerHTML = CATALOG_CATEGORIES.map(id => {
+    const key = id === 'all' ? 'cat.all' : 'cat.' + id;
+    const label = t[key] || id;
+    const active = id === catalogState.cat ? ' active' : '';
+    return `<button class="cat-tab${active}" data-cat="${id}">${label}</button>`;
+  }).join('');
+  wrap.querySelectorAll('.cat-tab').forEach(btn => {
+    btn.addEventListener('click', () => {
+      catalogState.cat = btn.getAttribute('data-cat');
+      renderCategoryTabs();
+      renderCatalog();
+    });
+  });
+}
+
+function renderCatalog() {
+  const t = translations[currentLang] || translations.en;
+  const grid = document.getElementById('productsGrid');
+  const countEl = document.getElementById('catalogCount');
+  if (!grid) return;
+  const q = catalogState.q.trim().toLowerCase();
+  const filtered = PRODUCTS.filter(item => {
+    const inCat = catalogState.cat === 'all' || item.c === catalogState.cat;
+    const inSearch = !q || item.n.toLowerCase().includes(q);
+    return inCat && inSearch;
+  });
+  if (countEl) countEl.textContent = (t['catalog.count'] || '{n} products').replace('{n}', filtered.length);
+  if (filtered.length === 0) {
+    grid.innerHTML = `<div class="catalog-empty">${t['catalog.empty'] || 'No products found.'}</div>`;
+    return;
+  }
+  grid.innerHTML = filtered.map(item => {
+    const catLabel = t['cat.' + item.c] || item.c;
+    const priceText = formatPrice(item.p, item.f);
+    const safeName = item.n.replace(/"/g, '&quot;');
+    const imgBlock = item.img
+      ? `<img class="product-photo" src="${item.img}" alt="${safeName}" loading="lazy">`
+      : `<svg class="product-photo-fallback" viewBox="0 0 80 80" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <rect x="10" y="40" width="60" height="8" rx="2" stroke="#B8812A" stroke-width="1.5"/>
+          <path d="M25 48 L18 70 M55 48 L62 70" stroke="#B8812A" stroke-width="1.5"/>
+          <path d="M20 48 L22 60 M60 48 L58 60" stroke="#B8812A" stroke-width="1"/>
+        </svg>`;
+    const cardClass = item.img ? 'product-card' : 'product-card no-photo';
+    const overlayText = item.hasDetail ? (t['product.viewDetails'] || 'View Details →') : (t['product.inquire'] || 'Inquire →');
+    const cardInner = `
+      <div class="product-img-area">
+        ${imgBlock}
+        <div class="product-overlay"><span class="product-overlay-text">${overlayText}</span></div>
+      </div>
+      <div class="product-info">
+        <div class="product-name">${safeName}</div>
+        <div class="product-material">${catLabel}</div>
+        <div class="product-price">${priceText}</div>
+      </div>`;
+    return item.hasDetail
+      ? `<a class="${cardClass}" href="#/product/${item.slug}" onclick="showProductDetail('${item.slug}');return false;">${cardInner}</a>`
+      : `<div class="${cardClass}">${cardInner}</div>`;
+  }).join('');
+}
+
+function initCatalogSearch() {
+  const input = document.getElementById('productSearch');
+  if (!input) return;
+  input.addEventListener('input', () => {
+    catalogState.q = input.value;
+    renderCatalog();
+  });
+}
+/* ===== END PRODUCT CATALOG ===== */
+
+/* ===== PRODUCT DETAIL VIEW (single-file, no separate pages) ===== */
+const EDGE_DEFS = [["natural","Přírodní hrana"],["straight","Rovná hrana"]];
+const SHADE_DEFS = [["honey","Medový"],["light","Světlý"],["dark","Tmavý - transparentní"]];
+const FRAME_DEFS = [["black","Černá"],["white","Bílá"]];
+const PLACEHOLDER_COLORS = {natural:"#C9A36A",straight:"#B8812A",honey:"#C99A52",light:"#E3CDA0",dark:"#4A3324",black:"#222222",white:"#F2EFE8"};
+
+function pdEsc(s) {
+  const d = document.createElement('div');
+  d.textContent = s == null ? '' : s;
+  return d.innerHTML;
+}
+function pdFmtPrice(price, fromFlag) {
+  const num = price.toLocaleString('cs-CZ').replace(/,/g, ' ');
+  return fromFlag ? `From ${num} Kč` : `${num} Kč`;
+}
+function pdEdgeIcon(value) {
+  const color = PLACEHOLDER_COLORS[value] || '#B8812A';
+  const path = value === 'natural'
+    ? 'M6 70 Q20 55 14 40 Q8 25 22 14 L94 14 Q86 30 92 45 Q98 60 86 70 Z'
+    : 'M14 14 L86 14 L86 70 L14 70 Z';
+  return `<svg viewBox="0 0 100 84" style="background:${color}"><path d="${path}" fill="none" stroke="rgba(0,0,0,0.35)" stroke-width="3"/></svg>`;
+}
+function pdSwatchTile(value, label, selected, group, kind) {
+  const check = selected ? '<span class="pd-swatch-check">&#10003;</span>' : '';
+  const selClass = selected ? ' selected' : '';
+  const media = kind === 'edge' ? pdEdgeIcon(value) : `<div class="pd-swatch-color" style="background:${PLACEHOLDER_COLORS[value] || '#C9A36A'}"></div>`;
+  return `<button class="pd-swatch-tile${selClass}" data-group="${group}" data-val="${value}" onclick="pdSelectSwatch(this)" title="${pdEsc(label)}">
+    <span class="pd-swatch-media">${media}${check}</span>
+    <span class="pd-swatch-label">${pdEsc(label)}</span>
+  </button>`;
+}
+function pdVariantGroup(title, defs, defaultVal, group, kind) {
+  const tiles = defs.map(([v, l]) => pdSwatchTile(v, l, v === defaultVal, group, kind)).join('');
+  return `<div class="pd-variant-group"><div class="pd-variant-title">${pdEsc(title)}</div><div class="pd-swatch-row">${tiles}</div></div>`;
+}
+function pdSelectSwatch(btn) {
+  const group = btn.getAttribute('data-group');
+  btn.parentElement.querySelectorAll('.pd-swatch-tile[data-group="' + group + '"]').forEach(b => {
+    b.classList.remove('selected');
+    const c = b.querySelector('.pd-swatch-check'); if (c) c.remove();
+  });
+  btn.classList.add('selected');
+  const span = document.createElement('span');
+  span.className = 'pd-swatch-check';
+  span.innerHTML = '&#10003;';
+  btn.querySelector('.pd-swatch-media').appendChild(span);
+}
+function pdSelectPhoto(btn, idx, photos) {
+  document.getElementById('pdMainPhoto').src = photos[idx];
+  btn.parentElement.querySelectorAll('.pd-thumbbtn').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+}
+function pdGallery(photos, safeName) {
+  const main = photos[0];
+  if (photos.length > 1) {
+    const thumbs = photos.map((u, i) =>
+      `<button class="pd-thumbbtn${i === 0 ? ' active' : ''}" onclick="pdSelectPhoto(this,${i},window._pdPhotos)"><img src="${pdEsc(u)}" alt="${safeName} ${i+1}" loading="lazy"></button>`
+    ).join('');
+    return `<div><div class="pd-gallery-main"><img id="pdMainPhoto" src="${pdEsc(main)}" alt="${safeName}"></div><div class="pd-thumbstrip">${thumbs}</div></div>`;
+  }
+  return `<div><div class="pd-gallery-main"><img id="pdMainPhoto" src="${pdEsc(main)}" alt="${safeName}"></div></div>`;
+}
+function pdRelated(item) {
+  const rel = PRODUCTS.filter(p => p.c === item.c && p.slug !== item.slug && p.hasDetail).slice(0, 3);
+  if (!rel.length) return '';
+  const cards = rel.map(r => `<a class="pd-related-card" onclick="showProductDetail('${r.slug}');return false;">
+      <div class="pd-related-img"><img src="${pdEsc(r.img)}" alt="${pdEsc(r.n)}" loading="lazy"></div>
+      <div class="pd-related-name">${pdEsc(r.n)}</div>
+      <div class="pd-related-price">${pdFmtPrice(r.p, r.f)}</div>
+    </a>`).join('');
+  return `<section class="pd-related-section"><div class="pd-related-eyebrow">You May Also Like</div><div class="pd-related-grid">${cards}</div></section>`;
+}
+function showProductDetail(slug) {
+  const item = PRODUCTS.find(p => p.slug === slug);
+  const d = PRODUCT_DETAILS[slug];
+  if (!item || !d) return;
+  window._pdPhotos = d.photos;
+  const safeName = pdEsc(item.n);
+  let html = `<div class="pd-topbar">
+      <button class="pd-backlink" onclick="showCatalog()">&larr; Back to Collection</button>
+      <div class="pd-wordmark">ARDEN WOOD</div>
+    </div>
+    <div class="pd-wrap">
+      ${pdGallery(d.photos, safeName)}
+      <div class="pd-infocol">
+        <div class="pd-cattag">${pdEsc(d.catLabel)}</div>
+        <h1 class="pd-title">${safeName}</h1>
+        <p class="pd-desc">${pdEsc(d.desc)}</p>
+        ${d.edge ? pdVariantGroup('Hrana desky', EDGE_DEFS, 'natural', 'edge', 'edge') : ''}
+        ${d.shade ? pdVariantGroup('Odstín desky', SHADE_DEFS, 'dark', 'shade', 'shade') : ''}
+        ${d.frame ? pdVariantGroup('Barva podnoží', FRAME_DEFS, 'black', 'frame', 'frame') : ''}
+        <div class="pd-price-row">${pdFmtPrice(item.p, item.f)}</div>
+        <div class="pd-cta-row"><button class="btn-primary" onclick="window.location.href='mailto:info@najodecor.cz?subject=' + encodeURIComponent('Inquiry: ${item.n.replace(/'/g,'')}')">Inquire About This Piece</button></div>
+        <p class="pd-note-text">Every piece is made to order from solid oak in our workshop in the Beskydy Mountains, Czech Republic. Need a custom size or finish? Write to us at <a href="mailto:info@najodecor.cz">info@najodecor.cz</a>.</p>
+      </div>
+    </div>
+    ${pdRelated(item)}
+    <div class="pd-footer">&copy; 2026 Arden Wood — Handcrafted Oak Furniture. Demo catalog built with real product data.</div>`;
+  document.getElementById('detailRoot').innerHTML = html;
+  document.getElementById('catalogRoot').style.display = 'none';
+  document.getElementById('detailRoot').style.display = 'block';
+  window.scrollTo(0, 0);
+  if (location.hash !== '#/product/' + slug) history.pushState({slug}, '', '#/product/' + slug);
+}
+function showCatalog() {
+  document.getElementById('detailRoot').style.display = 'none';
+  document.getElementById('catalogRoot').style.display = '';
+  window.scrollTo(0, 0);
+  if (location.hash) history.pushState({}, '', location.pathname + location.search);
+}
+window.addEventListener('popstate', () => {
+  const m = location.hash.match(/^#\/product\/(.+)$/);
+  if (m) showProductDetail(m[1]); else showCatalog();
+});
+/* ===== END PRODUCT DETAIL VIEW ===== */
+
+let currentLang = 'en';
+
+function setLang(lang) {
+  if (!translations[lang]) return;
+  currentLang = lang;
+  const t = translations[lang];
+  document.querySelectorAll('[data-i18n]').forEach(el => {
+    const key = el.getAttribute('data-i18n');
+    if (t[key] !== undefined) el.innerHTML = t[key];
+  });
+  document.querySelectorAll('[data-i18n-placeholder]').forEach(el => {
+    const key = el.getAttribute('data-i18n-placeholder');
+    if (t[key] !== undefined) el.placeholder = t[key];
+  });
+  document.querySelectorAll('.lang-btn').forEach(btn => {
+    btn.classList.toggle('active', btn.textContent.trim().toLowerCase() === lang ||
+      (lang === 'cs' && btn.textContent.trim() === 'CZ') ||
+      (lang === 'uk' && btn.textContent.trim() === 'UA') ||
+      (lang === 'sk' && btn.textContent.trim() === 'SK'));
+  });
+  document.querySelector('html').lang = lang;
+  renderCategoryTabs();
+  renderCatalog();
+}
+
+function activeLangCard(card) {
+  document.querySelectorAll('.lang-card').forEach(c => c.classList.remove('active-lang'));
+  card.classList.add('active-lang');
+}
+
+// Auto-detect browser language
+const browserLang = navigator.language.slice(0,2).toLowerCase();
+const supported = Object.keys(translations);
+if (supported.includes(browserLang) && browserLang !== 'en') {
+  setLang(browserLang);
+  const card = document.querySelector(`.lang-card[data-lang="${browserLang}"]`);
+  if (card) activeLangCard(card);
+}
+
+initCatalogSearch();
+renderCategoryTabs();
+renderCatalog();
+
+// Deep-link support: if URL already has #/product/slug on load, open it directly
+(function() {
+  const m = location.hash.match(/^#\/product\/(.+)$/);
+  if (m && PRODUCT_DETAILS[m[1]]) showProductDetail(m[1]);
+})();
+</script>
+</body>
+</html>
