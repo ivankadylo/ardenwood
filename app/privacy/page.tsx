@@ -1,3 +1,10 @@
+import { Metadata } from 'next';
+
+export const metadata: Metadata = {
+  title: 'Privacy Policy | Arden Wood',
+  description: 'How we protect and manage your personal data.',
+};
+
 export default function Privacy() {
   return (
     <div className="max-w-3xl mx-auto px-10 py-24">

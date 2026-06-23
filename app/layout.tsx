@@ -4,6 +4,7 @@ import "./globals.css";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import CookieConsent from "@/components/CookieConsent";
+import ComparisonBar from "@/components/ComparisonBar";
 import { LanguageProvider } from "@/lib/LanguageContext";
 
 const cormorantGaramond = Cormorant_Garamond({
@@ -35,6 +36,7 @@ export default function RootLayout({
         <LanguageProvider>
           <Navbar />
           <main>{children}</main>
+          <ComparisonBar />
           <Footer />
           <CookieConsent />
         </LanguageProvider>

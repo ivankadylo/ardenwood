@@ -1,6 +1,8 @@
 import { NextResponse } from 'next/server';
 import { createClient } from '@supabase/supabase-js';
 import twilio from 'twilio';
+import { z } from 'zod';
+import { authRateLimit } from '@/lib/ratelimit';
 
 const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL || 'http://placeholder';
 const supabaseServiceRoleKey = process.env.SUPABASE_SERVICE_ROLE_KEY || 'placeholder';
@@ -14,13 +16,24 @@ const twilioClient = process.env.TWILIO_ACCOUNT_SID && process.env.TWILIO_ACCOUN
   ? twilio(process.env.TWILIO_ACCOUNT_SID, process.env.TWILIO_AUTH_TOKEN)
   : null;
 
-export async function POST(req: Request) {
-  try {
-    const { phone } = await req.json();
+const phoneSchema = z.object({
+  phone: z.string().min(9).max(15),
+});
 
-    if (!phone) {
-      return NextResponse.json({ error: 'Phone number is required' }, { status: 400 });
+export async function POST(req: Request) {
+  const ip = req.headers.get('x-forwarded-for') || '127.0.0.1';
+  const { success } = await authRateLimit.limit(ip);
+  if (!success) {
+    return NextResponse.json({ error: 'Too many requests' }, { status: 429 });
+  }
+
+  try {
+    const body = await req.json();
+    const result = phoneSchema.safeParse(body);
+    if (!result.success) {
+      return NextResponse.json({ error: 'Invalid phone number' }, { status: 400 });
     }
+    const { phone } = result.data;
 
     // Generate 6-digit code
     const code = Math.floor(100000 + Math.random() * 900000).toString();

@@ -5,14 +5,17 @@ export default function Footer() {
     <>
       <footer className="bg-charcoal px-10 md:px-20 pt-[60px] pb-10 grid grid-cols-1 md:grid-cols-4 gap-[60px]">
         <div className="col-span-1 md:col-span-1">
-          <div className="text-2xl font-serif tracking-[4px] text-white uppercase mb-4">
-            Arden<span className="text-oak">Wood</span>
+          <div className="mb-4">
+            <div className="text-2xl font-serif tracking-[4px] text-white uppercase">
+              Arden<span className="text-oak">Wood</span>
+            </div>
+            <div className="text-[10px] font-serif tracking-[2px] uppercase text-oak/60 mt-1">IK ARDEN GROUP</div>
           </div>
           <p className="text-[13px] text-white/35 leading-[1.7] mb-7 max-w-[260px]">
             Handcrafted oak furniture from the heart of Europe. Delivered across the EU.
           </p>
           <p className="text-[11px] text-white/20 leading-[1.6]">
-            © 2024 IK Arden Group s.r.o.<br />
+            © {new Date().getFullYear()} IK Arden Group s.r.o.<br />
             Ostrava, Czech Republic<br />
             ardenwood.eu
           </p>

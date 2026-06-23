@@ -18,6 +18,7 @@ export default function Register() {
     phone: '',
     gdpr: false,
     marketing: false,
+    honeypot: '',
   });
 
   const [verificationCode, setVerificationCode] = useState('');
@@ -27,6 +28,12 @@ export default function Register() {
     e.preventDefault();
     setLoading(true);
     setError(null);
+
+    if (formData.honeypot) {
+      setError('Bot detected');
+      setLoading(false);
+      return;
+    }
 
     try {
       const { data, error: signUpError } = await supabase.auth.signUp({
@@ -109,6 +116,15 @@ export default function Register() {
 
         {step === 1 ? (
           <form onSubmit={handleRegister} className="space-y-5">
+            <div className="hidden" aria-hidden="true">
+              <input
+                type="text"
+                value={formData.honeypot}
+                onChange={e => setFormData({ ...formData, honeypot: e.target.value })}
+                tabIndex={-1}
+                autoComplete="off"
+              />
+            </div>
             <div>
               <label className="block text-[11px] uppercase tracking-wider text-warm-mid mb-2 font-medium">Full Name</label>
               <input
