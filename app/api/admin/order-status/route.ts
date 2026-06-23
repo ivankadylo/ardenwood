@@ -1,9 +1,27 @@
 import { NextResponse } from 'next/server';
 import { supabase } from '@/lib/supabase';
+import { z } from 'zod';
+import { generalRateLimit } from '@/lib/ratelimit';
+
+const statusSchema = z.object({
+  orderId: z.string().uuid(),
+  status: z.enum(['pending','confirmed','in_production','shipped','delivered','cancelled']),
+});
 
 export async function POST(request: Request) {
+  const ip = request.headers.get('x-forwarded-for') || '127.0.0.1';
+  const { success } = await generalRateLimit.limit(ip);
+  if (!success) {
+    return NextResponse.json({ error: 'Too many requests' }, { status: 429 });
+  }
+
   try {
-    const { orderId, status } = await request.json();
+    const body = await request.json();
+    const result = statusSchema.safeParse(body);
+    if (!result.success) {
+      return NextResponse.json({ error: 'Invalid input' }, { status: 400 });
+    }
+    const { orderId, status } = result.data;
 
     const { data: order } = await supabase
       .from('orders')

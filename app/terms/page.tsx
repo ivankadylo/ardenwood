@@ -1,3 +1,10 @@
+import { Metadata } from 'next';
+
+export const metadata: Metadata = {
+  title: 'Terms & Conditions | Arden Wood',
+  description: 'Terms and conditions for using our website and purchasing our furniture.',
+};
+
 export default function Terms() {
   return (
     <div className="max-w-3xl mx-auto px-10 py-24">

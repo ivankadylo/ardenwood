@@ -1,3 +1,10 @@
+import { Metadata } from 'next';
+
+export const metadata: Metadata = {
+  title: 'Cookie Policy | Arden Wood',
+  description: 'How we use cookies to improve your experience.',
+};
+
 export default function Cookies() {
   return (
     <div className="max-w-3xl mx-auto px-10 py-24">

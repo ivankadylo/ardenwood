@@ -16,6 +16,13 @@ export function LanguageProvider({ children }: { children: React.ReactNode }) {
     const savedLang = localStorage.getItem('lang');
     if (savedLang) {
       setLangState(savedLang);
+    } else {
+      const browserLang = navigator.language.split('-')[0];
+      const supported = ['en', 'de', 'fr', 'cs', 'pl', 'it', 'es', 'nl', 'sk', 'uk'];
+      if (supported.includes(browserLang)) {
+        setLangState(browserLang);
+        localStorage.setItem('lang', browserLang);
+      }
     }
   }, []);
 
