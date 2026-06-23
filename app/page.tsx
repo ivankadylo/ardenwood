@@ -139,33 +139,50 @@ export default function Home() {
             const priceText = item.f ? `${t["price.from"]} ${priceStr} Kč` : `${priceStr} Kč`;
 
             return (
-              <Link
+              <div
                 key={idx}
-                href={item.hasDetail ? `/product/${item.slug}` : "#"}
-                className={`product-card group relative bg-white overflow-hidden cursor-pointer block ${idx === 0 ? 'lg:row-span-2' : ''}`}
+                className={`product-card group relative bg-white overflow-hidden ${idx === 0 ? 'lg:row-span-2' : ''}`}
               >
-                <div className={`product-img-area relative aspect-[3/4] flex items-center justify-center overflow-hidden transition-transform duration-500 group-hover:scale-[1.03] ${!item.img ? 'bg-[#E8DFD0]' : ''}`}>
-                  {item.img ? (
-                    <img src={item.img} alt={item.n} className="w-full h-full object-cover block" loading="lazy" />
-                  ) : (
-                    <svg className="w-16 h-16 opacity-[0.28]" viewBox="0 0 80 80" fill="none" xmlns="http://www.w3.org/2000/svg">
-                      <rect x="10" y="40" width="60" height="8" rx="2" stroke="#B8812A" strokeWidth="1.5" />
-                      <path d="M25 48 L18 70 M55 48 L62 70" stroke="#B8812A" strokeWidth="1.5" />
-                      <path d="M20 48 L22 60 M60 48 L58 60" stroke="#B8812A" strokeWidth="1" />
-                    </svg>
-                  )}
-                  <div className="product-overlay absolute inset-0 bg-[linear-gradient(to_top,rgba(30,26,20,0.7)_0%,transparent_50%)] opacity-0 transition-opacity duration-300 flex items-end p-7 group-hover:opacity-100">
-                    <span className="text-white text-[11px] tracking-[2px] uppercase">
-                      {item.hasDetail ? t['product.viewDetails'] : t['product.inquire']}
-                    </span>
+                <Link
+                  href={item.hasDetail ? `/product/${item.slug}` : "#"}
+                  className="block cursor-pointer"
+                >
+                  <div className={`product-img-area relative aspect-[3/4] flex items-center justify-center overflow-hidden transition-transform duration-500 group-hover:scale-[1.03] ${!item.img ? 'bg-[#E8DFD0]' : ''}`}>
+                    {item.img ? (
+                      <img src={item.img} alt={item.n} className="w-full h-full object-cover block" loading="lazy" />
+                    ) : (
+                      <svg className="w-16 h-16 opacity-[0.28]" viewBox="0 0 80 80" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <rect x="10" y="40" width="60" height="8" rx="2" stroke="#B8812A" strokeWidth="1.5" />
+                        <path d="M25 48 L18 70 M55 48 L62 70" stroke="#B8812A" strokeWidth="1.5" />
+                        <path d="M20 48 L22 60 M60 48 L58 60" stroke="#B8812A" strokeWidth="1" />
+                      </svg>
+                    )}
+                    <div className="product-overlay absolute inset-0 bg-[linear-gradient(to_top,rgba(30,26,20,0.7)_0%,transparent_50%)] opacity-0 transition-opacity duration-300 flex items-end p-7 group-hover:opacity-100">
+                      <span className="text-white text-[11px] tracking-[2px] uppercase">
+                        {item.hasDetail ? t['product.viewDetails'] : t['product.inquire']}
+                      </span>
+                    </div>
+                  </div>
+                </Link>
+                <div className="product-info p-7 border-t border-border relative">
+                  <Link href={item.hasDetail ? `/product/${item.slug}` : "#"} className="block mb-1 hover:text-oak transition-colors">
+                    <div className="product-name font-serif text-[22px] text-charcoal">{item.n}</div>
+                  </Link>
+                  <div className="product-material text-[11px] tracking-[1.5px] text-warm-mid uppercase">{catLabel}</div>
+                  <div className="flex items-center justify-between mt-2">
+                    <div className="product-price font-serif text-[18px] text-oak">{priceText}</div>
+                    <button
+                      onClick={(e) => {
+                        e.preventDefault();
+                        console.log('Added to cart:', item.n);
+                      }}
+                      className="add-to-cart-btn bg-charcoal text-cream border-none px-4 py-2 font-sans text-[9px] tracking-[1.5px] uppercase cursor-pointer transition-all hover:bg-oak-dark"
+                    >
+                      {t["product.addToCart"]}
+                    </button>
                   </div>
                 </div>
-                <div className="product-info p-7 border-t border-border">
-                  <div className="product-name font-serif text-[22px] text-charcoal mb-1">{item.n}</div>
-                  <div className="product-material text-[11px] tracking-[1.5px] text-warm-mid uppercase">{catLabel}</div>
-                  <div className="product-price font-serif text-[18px] text-oak mt-2">{priceText}</div>
-                </div>
-              </Link>
+              </div>
             );
           })}
           {filteredProducts.length === 0 && (
